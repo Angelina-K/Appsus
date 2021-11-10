@@ -8,3 +8,11 @@
   width: 500px;
   height: 50px;
 }
+
+/* note */
+.note-header {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
