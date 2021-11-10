@@ -2,7 +2,7 @@ export default {
   name: "mail-preview",
   props: ["email"],
   template: `
-  <section class="mail-preview flex align-center">
+  <section class="mail-preview flex align-center pointer">
     <div class=" preview-left flex">
       <input type="checkbox">
       <button>star</button>

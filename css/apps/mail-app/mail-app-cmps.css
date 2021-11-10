@@ -5,3 +5,6 @@
 .preview-right {
   gap: 10px;
 }
+.read {
+  background-color: rgba(128, 128, 128, 0.247);
+}

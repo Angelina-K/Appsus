@@ -5,7 +5,7 @@ export default {
   name: "mail-app",
   template: `
     <section class="mail-app ">
-        <mailList :emails="emailsForDisplay"/>
+        <mailList :filterBy='filterBy' :emails="emailsForDisplay"/>
 <!-- <h1>{{emails}}</h1> -->
     </section>
 `,

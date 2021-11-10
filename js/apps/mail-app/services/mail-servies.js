@@ -3,20 +3,17 @@ import { utilService } from "../../../services/util-service.js";
 
 export const mailService = {
   query,
+  getById,
   // remove,
-  // save,
+  save,
   // getById,
   // addReview
 };
 
 const EMAILS_KEY = "emails";
-// const SENT_KEY = "sentEmails";
 let gEmails;
-// let gSent;
 
 _createEmails();
-
-// console.log("gEmails", gEmails);
 
 const loggedinUser = {
   email: "user@appsus.com",
@@ -41,8 +38,17 @@ const criteria = {
 };
 
 function query() {
-  // console.log("getting query");
   return storageService.query(EMAILS_KEY);
+}
+
+function getById(emailId) {
+  return storageService.get(EMAILS_KEY, emailId);
+}
+
+function save(email) {
+  // console.log("saveing mail", email);
+  if (email.id) return storageService.put(EMAILS_KEY, email);
+  else return storageService.post(EMAILS_KEY, email);
 }
 
 function _createEmails() {
@@ -73,15 +79,17 @@ function _createEmail(subject, body, from, to) {
   };
   return email;
 }
-// function _createSentEmail(subject, body, to) {
-//   const email = {
-//     id: utilService.makeId(),
-//     subject,
-//     body,
-//     // isRead: false,
-//     sentAt: new Date().toLocaleString(),
-//     to: `${sendTo}@momo.com`,
-//     toName: to,
-//   };
-//   return email
-// }
+
+// template: `
+//     <div class="book-preview">
+//         <h3> Title: {{book.title}} </h3>
+//         <p :class="price"> Price: {{currencyIcon}}</p>
+//         <img class="book-img" :src="book.thumbnail">
+//         <img class="sale-img" :src=sale>
+//     </div>`,
+
+//     computed: {
+//         price() {
+//             if (this.book.listPrice.amount > 150) return 'red'
+//             if (this.book.listPrice.amount < 20) return 'green'
+//         },
