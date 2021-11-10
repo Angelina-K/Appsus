@@ -56,7 +56,6 @@ function _createEmails() {
     ];
   }
   gEmails = emails;
-  console.log(gEmails);
   utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
 

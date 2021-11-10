@@ -4,12 +4,14 @@ export default {
   props: ["emails"],
   template: `
     <ul class="clean-list">
-        <li v-for="email in emails" :key="email.id">
+      <li v-for="email in emails" :key="email.id">
+          <router-link :to="'/mail/'+email.id" >
             <mailPreview :email="email"/>
-            <!-- {{emails}} -->
+          </router-link>
         </li>
     </ul>
 `,
+
   components: {
     mailPreview,
   },
