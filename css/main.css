@@ -1,6 +1,7 @@
 @import url(./parts/fonts.css);
 @import url(./parts/helpers.css);
 @import url(./apps/keep/keep.css);
+@import url(./apps/mail-app/mail-app-main.css);
 
 * {
   box-sizing: border-box;

@@ -1,8 +1,8 @@
 import { storageService } from "../../services/async-storage-service.js";
 import { utilService } from "../../services/util-service.js";
 
-export const bookService = {
-  // query,
+export const mailService = {
+  query,
   // remove,
   // save,
   // getById,
@@ -10,9 +10,10 @@ export const bookService = {
 };
 
 const EMAIL_KEY = "emails";
-const gEmails = createEmails();
+let gEmails;
+_createEmails();
 
-console.log(gEmails);
+console.log("gEmails", gEmails);
 
 const loggedinUser = {
   email: "user@appsus.com",
@@ -36,7 +37,12 @@ const criteria = {
   lables: ["important", "romantic"], // has any of the labels
 };
 
-function createEmails() {
+function query() {
+  console.log("getting query");
+  return storageService.query(EMAIL_KEY);
+}
+
+function _createEmails() {
   let emails = utilService.loadFromStorage(EMAIL_KEY);
   if (!emails || !emails.length) {
     emails = [
@@ -46,8 +52,8 @@ function createEmails() {
       _createEmail("no subject", "whatever", "someone"),
     ];
   }
-  utilService.saveToStorage(EMAIL_KEY, emails);
-  return emails;
+  gEmails = emails;
+  utilService.saveToStorage(EMAIL_KEY, gEmails);
 }
 
 function _createEmail(subject, body, sendTo) {
