@@ -1,5 +1,5 @@
 import noteAdd from "../cmps/note-add.cmps.js";
-import noteTxt from "../cmps/note-txt.cmps.js";
+import noteImg from "../cmps/note-img.cmps.js";
 import { noteService } from "../services/note-service.cmps.js";
 
 export default {
@@ -8,16 +8,16 @@ export default {
           <section class="note main-layout ">
               <div class="note-app">
               <h1>Welcome To keep</h1>
-              <note-add ></note-add>
+              <note-add></note-add>
 
               <section>
-              <h3>My Notes</h3>
-              <ul>
-                <li>
-                </li>
-              </ul>
-              {{notes}}
-              </section>
+                <h3> My Notes</h3>
+                <div v-for="note in notes">
+                  <note-img :note="note" />
+                </div>
+                
+                 </section>
+
             </div>
           </section>
               `,
@@ -36,11 +36,18 @@ export default {
         this.notes = notes;
       });
     },
+    tooglePin(note) {},
+    editNote() {},
+    changeTxtColor() {},
+    changeBcgColor() {},
+    deleteNote(noteId) {
+      noteService.deleteNote(noteId);
+    },
   },
 
   components: {
     noteAdd,
-    noteTxt,
+    noteImg,
     noteService,
   },
 };
