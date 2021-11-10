@@ -1,8 +1,8 @@
 export default {
-  name: "keep-add",
-  props: ["keepAdd"],
+  name: "note-add",
+  props: ["noteAdd"],
   template: `
-        <section class="keep-add">
+        <section class="note-add">
         <div>
             <input class="add-input"  v-model.lazy="add" type="text" placeholder="What is on your mind...">
         </div>

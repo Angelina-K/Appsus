@@ -1,17 +1,17 @@
-import keepAdd from "../cmps/keep-add.cmps.js";
+import noteAdd from "../cmps/note-add.cmps.js";
 
 export default {
-  name: "keep-app",
+  name: "note-app",
   template: `
-          <section class="keep main-layout ">
-              <div class="keep-app">
+          <section class="note main-layout ">
+              <div class="note-app">
               <h1>Welcome To keep</h1>
-              <keep-add></keep-add>
+              <note-add></note-add>
             </div>
           </section>
               `,
 
   components: {
-    keepAdd,
+    noteAdd,
   },
 };
