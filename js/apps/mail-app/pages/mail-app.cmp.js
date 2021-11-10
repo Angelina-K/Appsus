@@ -5,28 +5,29 @@ export default {
   name: "mail-app",
   template: `
     <section class="mail-app ">
-        <!-- <mailList :emails="emailsToShow"/> -->
-<h1>HIIII</h1>
+        <mailList :emails="emailsForDisplay"/>
+<!-- <h1>{{emails}}</h1> -->
     </section>
 `,
   data() {
     return {
       emails: null,
+      filterBy: "inbox",
     };
   },
   created() {
-    // console.log("mail-app created");
     this.loadEmails();
   },
   methods: {
     loadEmails() {
-      // console.log("loading emails");
       mailService.query().then((emails) => (this.emails = emails));
-      // console.log("emails", emails);
     },
   },
   computed: {
-    emailsToShow() {
+    emailsForDisplay() {
+      // const emailsToShow = this.emailsToShow;
+      // const emails = this.emails;
+      // return emails[emailsToShow];
       return this.emails;
     },
   },
