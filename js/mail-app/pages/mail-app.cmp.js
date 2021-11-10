@@ -1,9 +1,34 @@
-import { bookService } from "../services/mail-servies.js";
+import { mailService } from "../services/mail-servies.js";
+import mailList from "../mail-cmps/mail-list.cmp.js";
+
 export default {
   name: "mail-app",
   template: `
-    <section class="keep main-layout ">
-        <h1>mail</h1>
+    <section class="mail-app ">
+        <mailList :emails="emailsToShow"/>
+
     </section>
 `,
+  data() {
+    return {
+      emails: null,
+    };
+  },
+  created() {
+    this.loadEmails();
+  },
+  methods: {
+    loadEmails() {
+      mailService.query().then((emails) => (this.emails = emails));
+      console.log("emails", emails);
+    },
+  },
+  computed: {
+    emailsToShow() {
+      return this.emails;
+    },
+  },
+  components: {
+    mailList,
+  },
 };

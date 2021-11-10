@@ -1,0 +1,7 @@
+.mail-preview {
+  gap: 100px;
+}
+.preview-left,
+.preview-right {
+  gap: 10px;
+}
