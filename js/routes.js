@@ -1,13 +1,23 @@
-import homePage from './pages/home-page.cmp.js';
-import aboutPage from './pages/about-page.cmp.js';
+import homePage from "./pages/home-page.cmp.js";
+import aboutPage from "./pages/about-page.cmp.js";
+import mailApp from "./mail-app/pages/mail-app.cmp.js";
+import keepApp from "./keep-app/pages/keep-app.cmp.js";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: homePage,
   },
   {
-    path: '/about',
+    path: "/mail",
+    component: mailApp,
+  },
+  {
+    path: "/keep",
+    component: keepApp,
+  },
+  {
+    path: "/about",
     component: aboutPage,
   },
 ];
