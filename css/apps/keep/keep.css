@@ -1,0 +1,10 @@
+/* ADD PAGE */
+.keep-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-input {
+  width: 600px;
+  height: 50px;
+}
