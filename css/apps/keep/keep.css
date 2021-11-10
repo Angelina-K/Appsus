@@ -1,22 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
 /* ADD PAGE */
 .note-app {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .add-input {
   width: 500px;
   height: 50px;
 }
 
 /* note */
+.notes-containers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-.note-header {
+.note-containers {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
-  height: 200px;
-  border: 1px solid black;
+  text-align: center;
+
+  /* width: 200px;
+  height: 200px;  */
+  border: 1px solid rgb(145, 143, 143);
+  border-radius: 5px;
   margin: 10px;
+}
+
+.note-header {
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgb(146, 146, 146);
+}
+
+.note-options {
+  margin-top: 20px;
+}
+
+.note-options > * {
+  border: none;
+  cursor: pointer;
+  background-color: hsla(0, 0%, 96%, 0);
+  color: rgb(150, 163, 131);
+}
+
+.edit-btn:hover {
+  color: black;
+  border: none;
+  cursor: pointer;
 }

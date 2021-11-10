@@ -27,22 +27,22 @@ function query() {
   });
 }
 
-// function remove(notsId) {
-//   return storageService.remove(NOTE_KEY, notsId);
-// }
+function deleteNote(notsId) {
+  return storageService.remove(NOTE_KEY, notsId);
+}
 
 // function save(nots) {
 //   if (nots.id) return storageService.put(NOTE_KEY, nots);
 //   else return storageService.post(NOTE_KEY, nots);
 // }
 
-function deleteNote(entityType, entityId) {
-  return query(entityType).then((entities) => {
-    const idx = entities.findIndex((entity) => entity.id === entityId);
-    entities.splice(idx, 1);
-    _save(entityType, entities);
-  });
-}
+// function deleteNote(entityType, entityId) {
+//   return query(entityType).then((entities) => {
+//     const idx = entities.findIndex((entity) => entity.id === entityId);
+//     entities.splice(idx, 1);
+//     _save(entityType, entities);
+//   });
+// }
 
 function _save(entityType, entities) {
   localStorage.setItem(entityType, JSON.stringify(entities));
@@ -71,9 +71,11 @@ function changeInfo(noteInfo, noteId) {
 }
 
 function tooglePin(noteId) {
-  getNoteById(noteId).then((note) => {
+  getById(noteId).then((note) => {
+    console.log(noteId);
     note.isPinned = !note.isPinned;
     utilService.saveToStorage(NOTE_KEY, gNotes);
+    console.log(gNotes);
   });
 }
 
@@ -129,12 +131,12 @@ function _createNotes() {
     ];
     utilService.saveToStorage(NOTE_KEY, notes);
   }
-  console.log(notes[0].info);
-  console.log(notes[1].info);
+  // console.log(notes[0].info);
+  // console.log(notes[1].info);
   return notes;
 }
 
-function _createNote(type, info, bcgColor = "rgb(212, 209, 209)") {
+function _createNote(type, info, bcgColor = "rgb(250, 245, 247)") {
   return {
     id: utilService.makeId(),
     type: type,

@@ -44,3 +44,30 @@ img {
   overflow: scroll;
   padding: 20px;
 }
+
+/* USER MSG */
+.user-msg {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  padding: 10px;
+}
+
+.success {
+  background-color: rgb(27, 180, 27);
+}
+
+.error {
+  background-color: red;
+}
+
+/* animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
