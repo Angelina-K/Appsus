@@ -13,7 +13,7 @@ const EMAIL_KEY = "emails";
 let gEmails;
 _createEmails();
 
-console.log("gEmails", gEmails);
+// console.log("gEmails", gEmails);
 
 const loggedinUser = {
   email: "user@appsus.com",
@@ -38,7 +38,7 @@ const criteria = {
 };
 
 function query() {
-  console.log("getting query");
+  // console.log("getting query");
   return storageService.query(EMAIL_KEY);
 }
 

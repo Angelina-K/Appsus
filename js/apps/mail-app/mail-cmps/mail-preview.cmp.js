@@ -1,6 +1,6 @@
 export default {
   name: "mail-preview",
-  props: [email],
+  // props: [email],
   template: `
   <section class="mail-preview flex align-center">
     <div class=" preview-left flex">

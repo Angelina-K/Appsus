@@ -5,8 +5,8 @@ export default {
   name: "mail-app",
   template: `
     <section class="mail-app ">
-        <mailList :emails="emailsToShow"/>
-
+        <!-- <mailList :emails="emailsToShow"/> -->
+<h1>HIIII</h1>
     </section>
 `,
   data() {
@@ -15,12 +15,14 @@ export default {
     };
   },
   created() {
+    // console.log("mail-app created");
     this.loadEmails();
   },
   methods: {
     loadEmails() {
+      // console.log("loading emails");
       mailService.query().then((emails) => (this.emails = emails));
-      console.log("emails", emails);
+      // console.log("emails", emails);
     },
   },
   computed: {
