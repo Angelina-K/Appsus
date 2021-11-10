@@ -1,10 +1,10 @@
-import appHeader from './general-cmps/app-header.cmp.js';
-import appFooter from './general-cmps/app-footer.cmp.js';
-import userMsg from './general-cmps/user-msg.cmp.js';
-import { router } from './routes.js';
+import appHeader from "./general-cmps/app-header.cmp.js";
+import appFooter from "./general-cmps/app-footer.cmp.js";
+import userMsg from "./general-cmps/user-msg.cmp.js";
+import { router } from "./routes.js";
 
 const options = {
-  el: '#app',
+  el: "#app",
   router,
   template: `
         <section>
