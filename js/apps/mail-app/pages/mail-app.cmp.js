@@ -1,12 +1,13 @@
 import { mailService } from "../services/mail-servies.js";
 import mailList from "../mail-cmps/mail-list.cmp.js";
+import sideFilters from "../mail-cmps/side-filters.cms.js";
 
 export default {
   name: "mail-app",
   template: `
-    <section class="mail-app ">
+    <section class="mail-app flex">
+    <sideFilters :filterBy='filterBy' :emails="emailsForDisplay"/>
         <mailList :filterBy='filterBy' :emails="emailsForDisplay"/>
-<!-- <h1>{{emails}}</h1> -->
     </section>
 `,
   data() {
@@ -33,5 +34,6 @@ export default {
   },
   components: {
     mailList,
+    sideFilters,
   },
 };

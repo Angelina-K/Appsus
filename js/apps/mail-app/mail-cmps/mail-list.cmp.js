@@ -5,7 +5,7 @@ export default {
   props: ["emails", "filterBy"],
   template: `
   <section class="mail-list">
-  <titleDisplay :title="filterBy"/>
+    <titleDisplay :title="filterBy"/>
     <ul class="clean-list">
       <li v-for="email in emails" :class="{read: email.isRead }" :key="email.id">
           <!-- <router-link :to="'/mail/'+email.id" > -->

@@ -1,10 +1,7 @@
-.mail-preview {
-  gap: 100px;
-}
-.preview-left,
-.preview-right {
-  gap: 10px;
-}
 .read {
+  background-color: rgba(128, 128, 128, 0.247);
+}
+
+.active-filter {
   background-color: rgba(128, 128, 128, 0.247);
 }

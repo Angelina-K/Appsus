@@ -2,7 +2,7 @@ export default {
   name: "title-for-display",
   props: ["title"],
   template: `
-    <section class="mail-list">
+    <section class="title-for-display">
         <h2>{{titleForDisplay}}</h2>
     </section>
 `,
