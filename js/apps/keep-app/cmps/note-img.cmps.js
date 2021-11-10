@@ -1,13 +1,23 @@
 export default {
   name: "note-img",
-  props: ["noteImg"],
   template: `
-         <div class="note-img" :style="{ color: textColor, backgroundColor: bcgColor }">
-
-          `,
+       <section>
+         <label>
+           {{info.label}}
+            <select v-model="val" @change="reportVal">
+              <options v-for="opt in info">{{opt}}</options>
+            </select>
+          </label>
+      </section>`,
+  props: ["info"],
   data() {
     return {
-      add: "",
+      val,
     };
+  },
+  methods: {
+    reportVal() {
+      this.emit("setVal", this.val);
+    },
   },
 };
