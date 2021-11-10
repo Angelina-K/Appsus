@@ -1,0 +1,27 @@
+/* Helpers */
+.debug {
+  outline: #ffe600 solid 4px;
+}
+/* flex */
+.flex {
+  display: flex;
+}
+.flex.align-center {
+  align-items: center;
+}
+.flex.space-between {
+  justify-content: space-between;
+}
+.flex.col {
+  flex-direction: column;
+}
+.flex.row {
+  flex-direction: row;
+}
+
+/* LIST HELPERS */
+.clean-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}

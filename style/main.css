@@ -1,0 +1,27 @@
+@import url(fonts.css);
+@import url(helpers.css);
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: montserrat, sans-serif;
+  margin: 0;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+/* LAYOUT */
+.main-layout {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* HEADER */
+.header a {
+  text-decoration: none;
+  color: black;
+}
