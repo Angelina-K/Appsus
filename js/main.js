@@ -11,7 +11,7 @@ const options = {
             <user-msg />
             <app-header />
             <keep-alive>
-                <router-view />
+                <router-view class="main-containers main-layout"/>
             </keep-alive>
             <app-footer />
         </section>
