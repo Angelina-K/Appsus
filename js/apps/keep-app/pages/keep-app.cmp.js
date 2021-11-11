@@ -2,7 +2,7 @@ import { eventBus } from "../../../services/event-bus-service.js";
 import { utilService } from "../../../services/util-service.js";
 import { noteService } from "../services/note-service.cmps.js";
 import noteAdd from "../cmps/note-add.cmps.js";
-import noteSwitch from "../cmps/note-switch.cpms.js";
+import noteList from "../cmps/note-list.cpms.js";
 
 export default {
   name: "note-app",
@@ -11,11 +11,11 @@ export default {
               <div class="note-app">
               <h1>Welcome To keep</h1>
               <note-add></note-add>
-
-              <h3> My Notes</h3>
+              <!-- <book-filter @filtered="setFilter"/> -->
+              <h3 class="my-notes-handling"> My Notes</h3>
               <section class="notes-containers">
                 <div v-for="note in notes">
-              <note-switch :note="note" @deleteNote="deleteNote" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @editNoteInfo="editNoteInfo"/></note-switch>
+              <note-list :note="note" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @editNoteInfo="editNoteInfo"/></note-list>
                 </div>
                  </section>
             </div>
@@ -40,7 +40,6 @@ export default {
       console.log(noteId);
       noteService.tooglePin(noteId);
     },
-
     editNoteInfo(noteInfo, noteId) {
       console.log(noteInfo);
       console.log(noteId);
@@ -49,12 +48,10 @@ export default {
     changeTxtColor(txtColor, noteId) {
       utilService.changeTxtColor(txtColor, noteId);
     },
-
     changeBcgColor(bcgColor, noteId) {
       utilService.changeBcgColor(bcgColor, noteId);
     },
-
-    deleteNote(noteId) {
+    deleteNotes(noteId) {
       noteService
         .deleteNote(noteId)
         .then(() => {
@@ -79,6 +76,6 @@ export default {
   components: {
     noteAdd,
     noteService,
-    noteSwitch,
+    noteList,
   },
 };

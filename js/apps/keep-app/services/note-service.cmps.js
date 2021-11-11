@@ -26,8 +26,8 @@ function query() {
   });
 }
 
-function deleteNote(notsId) {
-  return storageService.remove(NOTE_KEY, notsId);
+function deleteNote(notesId) {
+  return storageService.remove(NOTE_KEY, notesId);
 }
 
 function _save(entityType, entities) {
@@ -64,22 +64,10 @@ function tooglePin(noteId) {
     console.log(gNotes);
   });
 }
-// function getNoteById(noteId) {
-//   const note = notesDB.find((note) => note.id === noteId);
-//   return Promise.resolve(note);
-// }
 
 function getById(notsId) {
   return storageService.get(NOTE_KEY, notsId);
 }
-
-// function getEmptyNotes() {
-//   return {
-//     id: "",
-//     title: "",
-//     listPrice: { amount: 0 },
-//   };
-// }
 
 function _createNotes() {
   let notes = utilService.loadFromStorage(NOTE_KEY);
@@ -87,13 +75,13 @@ function _createNotes() {
     notes = [
       _createNote(
         "note-txt",
-        { titleTxt: "My first note", bodyTxt: "thank you vue," },
+        { titleTxt: "My first note", bodyTxt: "thank you vue 😀" },
         "#444247"
       ),
       _createNote(
         "note-img",
         {
-          titleTxt: "Img Note",
+          titleTxt: "My favorite movie",
           url: "https://excursionsbarcelona.com/wp-content/uploads/2021/01/Harry-Potter-in-Barcelona.jpg",
         },
         "#e77254"
@@ -101,15 +89,15 @@ function _createNotes() {
       _createNote(
         "note-video",
         {
-          titleTxt: "Video Note",
-          url: "https://www.youtube.com/watch?v=cXyPAxLvAQQ",
+          titleTxt: "I'll be there for you - acoustic",
+          url: "https://www.youtube.com/embed/1wv-jEJMbCA",
         },
         "#68936e"
       ),
       _createNote(
         "note-todos",
         {
-          titleTxt: "My list",
+          titleTxt: "Stuff to todo today",
           todos: [
             { todo: "learn Javascript", isDone: false },
             { todo: "do some css changes in my app", isDone: false },
@@ -117,6 +105,42 @@ function _createNotes() {
           ],
         },
         "#ca9e5b"
+      ),
+      _createNote(
+        "note-txt",
+        {
+          titleTxt: "Door code to the building",
+          bodyTxt: "3003# and push hard on the door",
+        },
+        "#e77254"
+      ),
+      _createNote(
+        "note-img",
+        {
+          titleTxt: "When im sad",
+          url: "https://ichef.bbci.co.uk/news/976/cpsprodpb/140B3/production/_111699028_gettyimages-1168451046.jpg",
+        },
+        "#ca9e5b"
+      ),
+      _createNote(
+        "note-video",
+        {
+          titleTxt: "Music for a better mood",
+          url: "https://www.youtube.com/embed/NiOxSuEJaTI",
+        },
+        "#444247"
+      ),
+      _createNote(
+        "note-todos",
+        {
+          titleTxt: "Things to prepare for the family reunion",
+          todos: [
+            { todo: "Chocolate cookies", isDone: false },
+            { todo: "Cheesecake", isDone: false },
+            { todo: "Bread", isDone: false },
+          ],
+        },
+        "#68936e"
       ),
     ];
     utilService.saveToStorage(NOTE_KEY, notes);

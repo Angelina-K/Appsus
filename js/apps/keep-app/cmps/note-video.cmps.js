@@ -52,7 +52,8 @@ export default {
   computed: {
     getUrl() {
       const videoId = this.note.info.url;
-      const videoLink = `https://www.youtube.com/embed/${videoId}`;
+      const videoLink = videoId;
+
       return videoLink;
     },
   },
