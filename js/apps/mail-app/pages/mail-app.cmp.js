@@ -21,12 +21,19 @@ export default {
   created() {
     this.loadEmails();
   },
+  // watch: {
+  //   emails(newVal, oldVal) {
+  //     console.log("txt has changed!");
+  //     // this.loadEmails();
+  //   },
+  // },
   methods: {
     loadEmails() {
       mailService.query().then((emails) => {
         this.emails = emails;
         // console.log(emails);
       });
+      // this.loadEmails();
     },
     setFilter(filterBy) {
       this.filterBy = filterBy;
@@ -40,11 +47,9 @@ export default {
         mailService.getById(emailId).then((email) => {
           email.isStarred = !email.isStarred;
           mailService.save(email);
-          // console.log(email);
         });
       }
       this.loadEmails();
-      // if (this.email && !this.email.isRead)
     },
   },
   computed: {
@@ -55,11 +60,11 @@ export default {
             case "inbox":
               return email.to === "me";
             case "starred":
-              console.log("starred");
-              break;
+              return email.isStarred;
             case "sent":
               return email.from === "me";
             case "drafts":
+              // FIXME add drafts
               console.log("drafts");
               break;
             case "read":
