@@ -1,14 +1,19 @@
 import { mailService } from "../services/mail-servies.js";
+import { eventBus } from "../../../services/event-bus-service.js";
 import mailList from "../mail-cmps/mail-list.cmp.js";
 import sideFilters from "../mail-cmps/side-filters.cms.js";
+import compose from "../pages/compose.cmp.js";
 
 export default {
   name: "mail-app",
   template: `
-    <section class="mail-app flex">
-    <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
+    <section class="mail-app flex col">
+      <button @click="openCompose">Compose</button>
+      <div class="flex ">
+        <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
         <mailList @starred="starEmail" @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
-      
+      </div>
+      <compose/>
     </section>
 `,
   data() {
@@ -51,6 +56,11 @@ export default {
       }
       this.loadEmails();
     },
+    openCompose() {
+      // this.showCompose = true;
+      eventBus.$emit("sohwCompose");
+      // eventBus.$emit("sohwCompose");
+    },
   },
   computed: {
     emailsForDisplay() {
@@ -84,7 +94,7 @@ export default {
         const read = allEmails.filter((email) => {
           return email.isRead;
         });
-        console.log(allEmails);
+        // console.log(allEmails);
         return `${read.length} / ${allEmails.length}`;
       }
     },
@@ -92,5 +102,6 @@ export default {
   components: {
     mailList,
     sideFilters,
+    compose,
   },
 };

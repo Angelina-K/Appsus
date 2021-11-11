@@ -11,3 +11,12 @@
 .starred {
   background-color: khaki;
 }
+.email-compose {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: lightcoral;
+}

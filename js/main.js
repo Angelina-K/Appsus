@@ -8,7 +8,8 @@ const options = {
   router,
   template: `
         <section>
-            <user-msg />
+          <div class="curtain-screen"></div>
+          <user-msg />
             <app-header />
             <keep-alive>
                 <router-view class="main-containers main-layout"/>

@@ -9,7 +9,7 @@ export default {
     <ul class="clean-list">
       <li v-for="(email,idx) in emails" :class="{read: email.isRead }" class="flex align-center" :key="email.id">
           <input @change="selected(email)" type="checkbox">
-          <button :name="idx" :class="{starred: email.isStarred}" @click="starred(email.id,idx)">star</button>
+          <button :name="idx" :class="{starred: email.isStarred}" @click.stop="starred(email.id,idx)">star</button>
             <mailPreview :email="email" @click.native="emailClicked(email.id)"/>
         </li>
     </ul>
