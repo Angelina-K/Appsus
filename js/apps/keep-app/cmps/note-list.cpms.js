@@ -2,6 +2,7 @@ import noteImg from "./note-img.cmps.js";
 import noteTxt from "./note-txt.cmps.js";
 import noteVideo from "./note-video.cmps.js";
 import noteTodos from "./note-todos.cmps.js";
+import noteEdit from "./note-edit.cmps.js";
 
 export default {
   name: "note-list",
@@ -22,16 +23,28 @@ export default {
                 </component>
                 </li>
             </ul> -->
+        <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
+        <note-edit v-if="editNote" :note="selectedNote" @close-edit="closeEdit" @delete-edit="deleteNote" @saveChanges="changeInfo"></note-edit>
+        </transition>
+        <div class="edit-modal" v-if="editNote"></div>
     </section>
     `,
+  data() {
+    return {
+      editNote: false,
+      selectedNote: {},
+    };
+  },
   methods: {
     tooglePin() {
       this.$emit("tooglePin", this.note.id);
       console.log(this.note.id);
     },
-    editNoteInfo() {
-      this.$emit("editNoteInfo", this.note);
-      console.log(this.note);
+    editNoteInfo(note) {
+      (this.selectedNote = note), (this.editNote = true);
+    },
+    closeEdit() {
+      this.editNote = false;
     },
     openTxtColor() {
       this.$refs.txtColor.click();
@@ -48,6 +61,9 @@ export default {
     deleteNote(noteId) {
       this.$emit("deleteNote", noteId);
     },
+    changeInfo(noteInfo, noteId) {
+      this.$emit("changeInfo", noteInfo, noteId);
+    },
   },
   computed: {
     pinnedNotes() {},
@@ -57,5 +73,6 @@ export default {
     noteTxt,
     noteVideo,
     noteTodos,
+    noteEdit,
   },
 };

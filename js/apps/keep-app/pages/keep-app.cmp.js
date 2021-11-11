@@ -1,8 +1,8 @@
 import { eventBus } from "../../../services/event-bus-service.js";
-import { utilService } from "../../../services/util-service.js";
 import { noteService } from "../services/note-service.cmps.js";
 import noteAdd from "../cmps/note-add.cmps.js";
 import noteList from "../cmps/note-list.cpms.js";
+import { storageService } from "../../../services/async-storage-service.js";
 
 export default {
   name: "note-app",
@@ -15,7 +15,7 @@ export default {
               <h3 class="my-notes-handling"> My Notes</h3>
               <section class="notes-containers">
                 <div v-for="note in notes">
-              <note-list :note="note" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @editNoteInfo="editNoteInfo"/></note-list>
+              <note-list :note="note" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @changeInfo="changeInfo"/></note-list>
                 </div>
                  </section>
             </div>
@@ -40,16 +40,33 @@ export default {
       console.log(noteId);
       noteService.tooglePin(noteId);
     },
-    editNoteInfo(noteInfo, noteId) {
-      console.log(noteInfo);
-      console.log(noteId);
-      utilService.changeInfo(noteInfo, noteId);
+    changeInfo(noteInfo, noteId) {
+      console.log("noteInfo", noteInfo);
+      console.log("noteId", noteId);
+
+      storageService
+        .put(noteInfo, noteId)
+        .then(() => {
+          const msg = {
+            txt: "Save Successfully",
+            type: "success",
+          };
+          eventBus.$emit("showMsg", msg);
+        })
+        .catch((err) => {
+          console.log("err", err);
+          const msg = {
+            txt: "Error. Please try later",
+            type: "error",
+          };
+          eventBus.$emit("showMsg", msg);
+        });
     },
     changeTxtColor(txtColor, noteId) {
-      utilService.changeTxtColor(txtColor, noteId);
+      noteService.changeTxtColor(txtColor, noteId);
     },
     changeBcgColor(bcgColor, noteId) {
-      utilService.changeBcgColor(bcgColor, noteId);
+      noteService.changeBcgColor(bcgColor, noteId);
     },
     deleteNotes(noteId) {
       noteService

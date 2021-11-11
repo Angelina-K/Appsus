@@ -1,20 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-/* ADD PAGE */
-.note-app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.add-input {
-  width: 500px;
-  height: 50px;
-}
-
 /* NOTE */
 .my-notes-handling {
   border-bottom: 1px solid rgb(146, 146, 146);

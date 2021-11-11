@@ -7,7 +7,6 @@ export const noteService = {
   deleteNote,
   changeBcgColor,
   changeTxtColor,
-  changeInfo,
   tooglePin,
 };
 
@@ -35,25 +34,17 @@ function _save(entityType, entities) {
 }
 
 function changeBcgColor(bcgColor, noteId) {
-  getNoteById(noteId).then((note) => {
+  noteId.then((note) => {
     note.style.bcgColor = bcgColor;
     utilService.saveToStorage(NOTE_KEY, gNotes);
   });
 }
 
 function changeTxtColor(txtColor, noteId) {
-  getNoteById(noteId).then((note) => {
+  noteId.then((note) => {
     note.style.txtColor = txtColor;
     utilService.saveToStorage(NOTE_KEY, gNotes);
   });
-}
-
-function changeInfo(noteInfo, noteId) {
-  getNoteById(noteId).then((note) => {
-    note.info = noteInfo;
-    utilService.saveToStorage(NOTE_KEY, gNotes);
-  });
-  return Promise.resolve("update");
 }
 
 function tooglePin(noteId) {

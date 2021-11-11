@@ -1,4 +1,5 @@
 export default {
+  name: "note-edit",
   props: ["note"],
   template: `
         <section class="note-edit" :style="{ color: note.style.txtColor, backgroundColor: note.style.bcgColor }">
@@ -62,7 +63,7 @@ export default {
           url: this.noteBody,
         };
       }
-      this.$emit("save-changes", noteInfo, this.note.id);
+      this.$emit("saveChanges", noteInfo, this.note.id);
       this.closeEdit();
     },
   },
