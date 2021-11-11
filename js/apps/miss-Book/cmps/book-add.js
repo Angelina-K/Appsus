@@ -7,8 +7,8 @@ export default {
             <input class="search-input"  v-model.lazy="searchStr" type="text" placeholder="Search for a book">
                 <ul class="search-result" v-if="searchBooks">
                     <li v-for="book in top5">
+                      <button @click="addBook(book)">+</button>
                         <span>{{book.volumeInfo.title}} </span>
-                        <button @click="addBook(book)">+</button>
                      </li>
 
                 </ul>

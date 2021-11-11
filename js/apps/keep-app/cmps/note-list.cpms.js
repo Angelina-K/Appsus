@@ -9,14 +9,14 @@ export default {
   props: ["note", "filterType", "searchByKeyword"],
   template: `
     <section>
-        <h1>Pinned Notes:</h1>
+        <h4>Pinned Notes:</h4>
             <ul>
                 <li class="clean-list">
                 <component :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
             </ul>
-        <h1>Unpinned Notes:</h1>
+        <h4>Unpinned Notes:</h4>
          <!-- <ul>
                 <li class="clean-list">
                 <component :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">

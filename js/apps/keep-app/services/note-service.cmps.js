@@ -66,7 +66,7 @@ function _createNotes() {
     notes = [
       _createNote(
         "note-txt",
-        { titleTxt: "My first note", bodyTxt: "thank you vue 😀" },
+        { titleTxt: "My first note", bodyTxt: "I want to sleep 😴😴😴" },
         "#444247"
       ),
       _createNote(
