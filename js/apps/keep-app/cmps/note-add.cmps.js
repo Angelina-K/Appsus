@@ -2,6 +2,7 @@ export default {
   name: "note-add",
   props: ["noteAdd"],
   template: `
+  
         `,
   data() {
     return {
