@@ -1,6 +1,6 @@
 export default {
   name: "side-filters",
-  props: ["emails", "filterBy"],
+  props: ["emails", "filterBy", "read"],
   template: `
   <section class="side-filters flex col">
     <button  @click="activeBtn = 'inbox'" :class="{active: activeBtn === 'inbox' }">
@@ -16,7 +16,7 @@ export default {
     <button   @click="activeBtn = 'unread'" :class="{active: activeBtn === 'unread' }"
     >Unread</button>
     <span >read:</span>
-    <span>{{countUnread}}</span>
+    <span>{{read}}</span>
   </section>
 `,
   data() {
@@ -27,6 +27,7 @@ export default {
   created() {
     // this.filterBy = filterBy;
     // this.$emit('filtered', { ...this.filterBy });
+    // this.countUnread();
   },
   watch: {
     activeBtn(newVal, oldVal) {
@@ -35,6 +36,8 @@ export default {
     },
   },
   computed: {
-    countUnread() {},
+    // countUnread() {
+    //   console.log(this.emails);
+    // },
   },
 };

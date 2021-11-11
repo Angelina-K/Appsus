@@ -6,7 +6,7 @@ export default {
   name: "mail-app",
   template: `
     <section class="mail-app flex">
-    <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay"/>
+    <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
         <mailList @starred="starEmail" @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
       
     </section>
@@ -76,6 +76,16 @@ export default {
           }
         });
         return emailsToShow;
+      }
+    },
+    coutRead() {
+      if (this.emails) {
+        const allEmails = this.emails;
+        const read = allEmails.filter((email) => {
+          return email.isRead;
+        });
+        console.log(allEmails);
+        return `${read.length} / ${allEmails.length}`;
       }
     },
   },
