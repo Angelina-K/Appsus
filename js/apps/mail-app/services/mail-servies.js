@@ -62,6 +62,7 @@ function _createEmails() {
     ];
   }
   gEmails = emails;
+  // console.log("gEmails", gEmails);
   utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
 
@@ -71,6 +72,7 @@ function _createEmail(subject, body, from, to) {
     subject,
     body,
     isRead: false,
+    isStarred: false,
     sentAt: new Date().toLocaleString(),
     from,
     to,

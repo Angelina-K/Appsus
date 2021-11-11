@@ -7,7 +7,8 @@ export default {
   template: `
     <section class="mail-app flex">
     <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay"/>
-        <mailList @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
+        <mailList @starred="starEmail" @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
+      
     </section>
 `,
   data() {
@@ -22,16 +23,28 @@ export default {
   },
   methods: {
     loadEmails() {
-      mailService.query().then((emails) => (this.emails = emails));
+      mailService.query().then((emails) => {
+        this.emails = emails;
+        // console.log(emails);
+      });
     },
     setFilter(filterBy) {
       this.filterBy = filterBy;
     },
-    selectEmail(emailId) {
+    selectEmail() {
       if (!this.selectedEmails) this.selectedEmails = [];
-      mailService.getById(emailId).then((email) => {
-        this.selectedEmails.push(email);
-      });
+      this.selectedEmails.push(email);
+    },
+    starEmail(emailId) {
+      if (this.emails) {
+        mailService.getById(emailId).then((email) => {
+          email.isStarred = !email.isStarred;
+          mailService.save(email);
+          // console.log(email);
+        });
+      }
+      this.loadEmails();
+      // if (this.email && !this.email.isRead)
     },
   },
   computed: {
