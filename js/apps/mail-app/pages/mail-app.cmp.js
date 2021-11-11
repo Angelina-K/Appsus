@@ -7,13 +7,14 @@ export default {
   template: `
     <section class="mail-app flex">
     <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay"/>
-        <mailList :filterBy='filterBy' :emails="emailsForDisplay"/>
+        <mailList @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
     </section>
 `,
   data() {
     return {
       emails: null,
       filterBy: "inbox",
+      selectedEmails: null,
     };
   },
   created() {
@@ -25,6 +26,12 @@ export default {
     },
     setFilter(filterBy) {
       this.filterBy = filterBy;
+    },
+    selectEmail(emailId) {
+      if (!this.selectedEmails) this.selectedEmails = [];
+      mailService.getById(emailId).then((email) => {
+        this.selectedEmails.push(email);
+      });
     },
   },
   computed: {
@@ -51,30 +58,6 @@ export default {
           }
         });
         return emailsToShow;
-      }
-    },
-    filterBySwitch() {
-      // const filterBy = this.filterBy;
-      // console.log("filterBy switch", filterBy);
-      switch (this.filterBy) {
-        case "inbox":
-          return this.emails;
-        case "starred":
-          console.log("starred");
-          break;
-        case "sent":
-          return email.from === "me";
-        case "drafts":
-          console.log("drafts");
-          break;
-        case "read":
-          console.log("read");
-          break;
-        case "unread":
-          console.log("unread");
-          break;
-        default:
-          console.log("defult switch");
       }
     },
   },
