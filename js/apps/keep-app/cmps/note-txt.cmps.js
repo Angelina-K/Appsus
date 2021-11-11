@@ -15,7 +15,7 @@ export default {
                 <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
               <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
           </div>
-          <p>{{note.info.todo}}</p>
+          <div>{{note.info.bodyTxt}} </div>
         </section>`,
 
   data() {

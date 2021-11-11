@@ -16,6 +16,10 @@
 }
 
 /* NOTE */
+.my-notes-handling {
+  border-bottom: 1px solid rgb(146, 146, 146);
+}
+
 .notes-containers {
   display: flex;
   flex-wrap: wrap;
@@ -28,6 +32,7 @@
 }
 
 .note-display {
+  font-size: 17px;
   height: 230px;
   width: 250px;
   border-radius: 5px;
@@ -37,7 +42,6 @@
 
 .note-img {
   width: 200px;
-  margin-bottom: 10px;
 }
 
 .note-options {

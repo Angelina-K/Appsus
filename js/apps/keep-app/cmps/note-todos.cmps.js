@@ -15,7 +15,7 @@ export default {
                   <input ref="txtColor" type="color" hidden v-model="txtColor" @change="changeTxtColor"><i class="fas fa-paint-brush fa-lg edit-btn"></i></button>
                 <button title="Change color" @click="openBcgColor">
                   <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
-                <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
+                  <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
             </div>
            <ul class="todo-list">
              <li v-for="todo in note.info.todos">
@@ -55,6 +55,7 @@ export default {
     },
     deleteNote() {
       this.$emit("deleteNote", this.note.id);
+      console.log(this.note.id);
     },
   },
   components: {
