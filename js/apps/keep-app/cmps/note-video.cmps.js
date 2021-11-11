@@ -1,5 +1,5 @@
 export default {
-  name: "note-txt",
+  name: "note-video",
   props: ["note"],
   template: `
          <section class="note-display" :style="{color: txtColor, backgroundColor: bcgColor}">
@@ -15,7 +15,7 @@ export default {
                 <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
               <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
           </div>
-          <p>{{note.info.todo}}</p>
+          <iframe width="200" :src="getUrl" frameborder="0" allowfullscreen></iframe>
         </section>`,
 
   data() {
@@ -47,6 +47,13 @@ export default {
     },
     deleteNote() {
       this.$emit("deleteNote", this.note.id);
+    },
+  },
+  computed: {
+    getUrl() {
+      const videoId = this.note.info.url;
+      const videoLink = `https://www.youtube.com/embed/${videoId}`;
+      return videoLink;
     },
   },
 };
