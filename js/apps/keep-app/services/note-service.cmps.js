@@ -3,7 +3,6 @@ import { storageService } from "../../../services/async-storage-service.js";
 
 export const noteService = {
   query,
-  getEmptyNotes,
   getById,
   deleteNote,
   changeBcgColor,
@@ -30,19 +29,6 @@ function query() {
 function deleteNote(notsId) {
   return storageService.remove(NOTE_KEY, notsId);
 }
-
-// function save(nots) {
-//   if (nots.id) return storageService.put(NOTE_KEY, nots);
-//   else return storageService.post(NOTE_KEY, nots);
-// }
-
-// function deleteNote(entityType, entityId) {
-//   return query(entityType).then((entities) => {
-//     const idx = entities.findIndex((entity) => entity.id === entityId);
-//     entities.splice(idx, 1);
-//     _save(entityType, entities);
-//   });
-// }
 
 function _save(entityType, entities) {
   localStorage.setItem(entityType, JSON.stringify(entities));
@@ -78,18 +64,22 @@ function tooglePin(noteId) {
     console.log(gNotes);
   });
 }
+// function getNoteById(noteId) {
+//   const note = notesDB.find((note) => note.id === noteId);
+//   return Promise.resolve(note);
+// }
 
 function getById(notsId) {
   return storageService.get(NOTE_KEY, notsId);
 }
 
-function getEmptyNotes() {
-  return {
-    id: "",
-    title: "",
-    listPrice: { amount: 0 },
-  };
-}
+// function getEmptyNotes() {
+//   return {
+//     id: "",
+//     title: "",
+//     listPrice: { amount: 0 },
+//   };
+// }
 
 function _createNotes() {
   let notes = utilService.loadFromStorage(NOTE_KEY);
@@ -98,7 +88,7 @@ function _createNotes() {
       _createNote(
         "note-txt",
         { titleTxt: "My first note", bodyTxt: "thank you vue," },
-        "#fde2e2"
+        "#444247"
       ),
       _createNote(
         "note-img",
@@ -106,15 +96,15 @@ function _createNotes() {
           titleTxt: "Img Note",
           url: "https://excursionsbarcelona.com/wp-content/uploads/2021/01/Harry-Potter-in-Barcelona.jpg",
         },
-        "#ffd3b6"
+        "#e77254"
       ),
       _createNote(
         "note-video",
         {
           titleTxt: "Video Note",
-          url: "https://www.youtube.com/watch?v=99NyTTA-q-4",
+          url: "https://www.youtube.com/watch?v=cXyPAxLvAQQ",
         },
-        "#a0ffe6"
+        "#68936e"
       ),
       _createNote(
         "note-todos",
@@ -126,7 +116,7 @@ function _createNotes() {
             { todo: "learn vue a", isDone: false },
           ],
         },
-        "#fde2e2"
+        "#ca9e5b"
       ),
     ];
     utilService.saveToStorage(NOTE_KEY, notes);
@@ -136,7 +126,7 @@ function _createNotes() {
   return notes;
 }
 
-function _createNote(type, info, bcgColor = "rgb(250, 245, 247)") {
+function _createNote(type, info, bcgColor = "rgb(68, 66, 71)") {
   return {
     id: utilService.makeId(),
     type: type,
@@ -145,7 +135,7 @@ function _createNote(type, info, bcgColor = "rgb(250, 245, 247)") {
     isOpen: false,
     createdTime: Date.now(),
     style: {
-      txtColor: "#000",
+      txtColor: "#f5f5f5",
       bcgColor,
     },
     info: info,

@@ -1,8 +1,8 @@
 import { eventBus } from "../../../services/event-bus-service.js";
 import { utilService } from "../../../services/util-service.js";
-import noteAdd from "../cmps/note-add.cmps.js";
-import noteImg from "../cmps/note-img.cmps.js";
 import { noteService } from "../services/note-service.cmps.js";
+import noteAdd from "../cmps/note-add.cmps.js";
+import noteSwitch from "../cmps/note-switch.cpms.js";
 
 export default {
   name: "note-app",
@@ -14,12 +14,10 @@ export default {
 
               <h3> My Notes</h3>
               <section class="notes-containers">
-                <div class="note-containers" v-for="note in notes">
-                  <note-img :note="note" @deleteNote="deleteNote" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor"/>
+                <div v-for="note in notes">
+              <note-switch :note="note" @deleteNote="deleteNote" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @editNoteInfo="editNoteInfo"/></note-switch>
                 </div>
-                
                  </section>
-
             </div>
           </section>
               `,
@@ -43,8 +41,14 @@ export default {
       noteService.tooglePin(noteId);
     },
 
-    editNote() {},
-    changeTxtColor() {},
+    editNoteInfo(noteInfo, noteId) {
+      console.log(noteInfo);
+      console.log(noteId);
+      utilService.changeInfo(noteInfo, noteId);
+    },
+    changeTxtColor(txtColor, noteId) {
+      utilService.changeTxtColor(txtColor, noteId);
+    },
 
     changeBcgColor(bcgColor, noteId) {
       utilService.changeBcgColor(bcgColor, noteId);
@@ -74,7 +78,7 @@ export default {
 
   components: {
     noteAdd,
-    noteImg,
     noteService,
+    noteSwitch,
   },
 };
