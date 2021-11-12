@@ -5,25 +5,27 @@ export default {
   template: `
     <section v-if="shouldShow" class="email-compose flex col">
       <form @submit.prevent="onSend">
-        <div class="email-compose-container">
-        <button class="compose-email-title-button" @click="setExpand">New Message</button>
+        <!-- <div class="email-compose-container"> -->
+        <button class="title-btn" @click="setExpand">New Message</button>
         <!-- <label for="">To</label> -->
         <input v-if="isRecipientClicked" v-on:click="onRecipientFormClick(false)"  :placeholder="recipient" class="email-compose-recipients">
             <div v-else class="to-form-input-container">
-                <span>To</span>
-                <input v-model="emptyEmail.to" placeholder="" class="to-form-input" >
+                <!-- <span>To</span> -->
+                <label>
+                <span v-if="isRecipientClicked">to</span><input v-model="emptyEmail.to" placeholder="" class="to-form-input" >
+                </label>
                 <!-- <button class="cc-bcc-button">Cc</button>
                 <button class="cc-bcc-button">Bcc</button> -->
             </div>
-            <input v-model="emptyEmail.subject"   placeholder="Subject" class="email-compose-subject">
-        <!-- <input v-model="subject"  v-on:click="onRecipientClick(true)" placeholder="Subject" class="email-compose-subject"> -->
-        <!-- <textarea v-model="body" v-on:click="onRecipientClick(true)" class="email-compose-contents"></textarea> -->
-        <textarea v-model="emptyEmail.body"  class="email-compose-contents"></textarea>
+            <!-- <input v-model="emptyEmail.subject"   placeholder="Subject" class="email-compose-subject"> -->
+        <input v-model="emptyEmail.subject"  v-on:click="onRecipientClick(true)" placeholder="Subject" class="email-compose-subject">
+        <textarea v-model="emptyEmail.body"" v-on:click="onRecipientClick(true)" class="email-compose-contents"></textarea>
+        <!-- <textarea v-model="emptyEmail.body"  class="email-compose-contents"></textarea> -->
         <div class="bottom-toolbar"> 
             <!-- <button @click="onSend" class="send-button">Send</button> -->
             <button type="submit" class="send-button">Send</button>
         </div>
-        </div>
+        <!-- </div> -->
         <button @click="close">Close</button>
         </form>
     </section>
