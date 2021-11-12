@@ -16,7 +16,6 @@ export default {
               
               <note-add></note-add>
               <note-filter @filtered="setFilter"></note-filter>
-
               
               <section class="notes-containers">
               <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor"/></note-list>
@@ -37,7 +36,7 @@ export default {
   methods: {
     loadNotes() {
       noteService.query().then((notes) => {
-        // console.log("app notes", notes);
+        console.log("app notes", notes);
         this.notes = notes;
       });
     },
@@ -87,8 +86,10 @@ export default {
       if (!this.filterBy) return this.notes;
       console.log(this.notes);
 
-      const searchStr = this.filterBy.titleTxt.toLowerCase();
-      const Type = this.filterBy.type ? this.filterBy.type : "All";
+      // const searchStr = this.filterBy.info.titleTxt.toLowerCase();
+      const Type = this.filterBy.type
+        ? this.filterBy.type
+        : this.filterBy.type === "All";
 
       const filterNotes = this.nots.filter((note) => {
         return (
