@@ -39,3 +39,7 @@ button {
 .title-for-display {
   margin: 10px;
 }
+
+.prev-btns {
+  justify-self: end;
+}

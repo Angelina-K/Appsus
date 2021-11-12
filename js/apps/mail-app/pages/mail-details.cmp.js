@@ -21,7 +21,6 @@ export default {
     };
   },
   created() {
-    // FIXME updates after refreshing
     const emailId = this.$route.params.mailId;
     mailService.getById(emailId).then((email) => {
       this.email = email;

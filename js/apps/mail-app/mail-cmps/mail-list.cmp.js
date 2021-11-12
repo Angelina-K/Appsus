@@ -11,14 +11,16 @@ export default {
           <input @change="selected(email)" type="checkbox">
           <button :name="idx" :class="{starred: email.isStarred}" @click.stop="starred(email.id)">star</button>
             <mailPreview :email="email" @click.native="emailClicked(email.id)"/>
+
         </li>
     </ul>
     </section>
 `,
-  // data() {
-  //   return {
-  //     starBtns: null,
-  // };
+  data() {
+    return {
+      // showBtns: false,
+    };
+  },
   // },
   // watch: {
   //   emails: {
@@ -43,6 +45,10 @@ export default {
       // console.log("starred", email.isStarred);
       this.$emit("starred", emailId);
     },
+    // mouseOver() {
+    //   console.log("mouseOver");
+    //   this.showBtns = true;
+    // },
   },
   computed: {},
   components: {
