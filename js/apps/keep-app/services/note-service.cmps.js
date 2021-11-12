@@ -9,6 +9,7 @@ export const noteService = {
   changeTxtColor,
   tooglePin,
   save,
+  getEmptyNote,
 };
 
 const NOTE_KEY = "note";
@@ -155,7 +156,23 @@ function _createNotes() {
 function _createNote(type, info, bcgColor = "rgb(68, 66, 71)") {
   return {
     id: utilService.makeId(),
-    type: type,
+    type,
+    isPinned: false,
+    isMarked: false,
+    isOpen: false,
+    createdTime: Date.now(),
+    style: {
+      txtColor: "#f5f5f5",
+      bcgColor,
+    },
+    info: info,
+  };
+}
+
+function getEmptyNote(type, info, bcgColor = "rgb(68, 66, 71)") {
+  return {
+    id: utilService.makeId(),
+    type,
     isPinned: false,
     isMarked: false,
     isOpen: false,

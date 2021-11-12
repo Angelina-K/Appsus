@@ -1,11 +1,13 @@
+import { noteService } from "../services/note-service.cmps.js";
+
 export default {
   name: "note-edit",
   props: ["note"],
   template: `
-        <section class="note-edit" :style="{ color: note.style.txtColor, backgroundColor: note.style.bcgColor }">
-        <section class="txt-area">
-            <input type="text" :style="{ color: note.style.txtColor, backgroundColor: note.style.bcgColor }" v-model="noteTitle">
-            <textarea :style="{  color: note.style.txtColor, backgroundColor: note.style.bcgColor  }" v-model="noteBody"></textarea>
+        <section class="note-edit" :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}">
+        <section v-if="noteToEdit" class="txt-area">
+            <input type="text" :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.titleTxt">
+            <textarea :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.bodyTxt"></textarea>
         </section>
         <section class="btn-area">
             <button class="edit-btn" @click="saveChanges">Save</button>
@@ -16,9 +18,15 @@ export default {
     `,
   data() {
     return {
-      noteTitle: "",
-      noteBody: "",
+      noteToEdit: null,
     };
+  },
+  created() {
+    noteService.getById(this.note.id).then((note) => {
+      console.log(this.note.id);
+      this.noteToEdit = note;
+      console.log(this.noteToEdit);
+    });
   },
   methods: {
     closeEdit() {
@@ -29,60 +37,8 @@ export default {
       this.closeEdit();
     },
     saveChanges() {
-      var noteInfo = {};
-      if (this.note.type === "note-txt") {
-        noteInfo = {
-          titleTxt: this.noteTitle,
-          bodyTxt: this.noteBody,
-        };
-      } else if (this.note.type === "note-todos") {
-        var todos = this.noteBody.split(",");
-        todos = todos.map((todo) => {
-          var todo = {
-            todo: todo.trim(),
-            isDone: false,
-          };
-          return todo;
-        });
-        noteInfo = {
-          titleTxt: this.noteTitle,
-          todos: todos,
-        };
-      } else if (this.note.type === "note-map") {
-        noteInfo = {
-          titleTxt: this.noteTitle,
-          location: this.noteBody,
-        };
-      } else if (this.note.type === "note-img" || "note-video") {
-        noteInfo = {
-          titleTxt: this.noteTitle,
-          url: this.noteBody,
-        };
-      }
-      this.$emit("saveChanges", noteInfo, this.note.id);
+      noteService.save(this.noteToEdit);
       this.closeEdit();
     },
-  },
-  created() {
-    this.noteTitle = this.note.info.titleTxt;
-    switch (this.note.type) {
-      case "note-txt":
-        this.noteBody = this.note.info.bodyTxt;
-        break;
-      case "note-img":
-        this.noteBody = this.note.info.url;
-        break;
-      case "note-video":
-        this.noteBody = this.note.info.url;
-        break;
-      case "note-todos":
-        var todos = this.note.info.todos.map((todo) => todo.todo);
-        todos = todos.join();
-        this.noteBody = todos;
-        break;
-      case "note-map":
-        this.noteBody = this.note.info.location;
-        break;
-    }
   },
 };
