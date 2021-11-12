@@ -19,7 +19,7 @@ export default {
 
               
               <section class="notes-containers">
-              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @changeInfo="changeInfo"/></note-list>
+              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor"/></note-list>
                  </section>
             </div>
           </section>
@@ -32,6 +32,7 @@ export default {
   },
   created() {
     this.loadNotes();
+    eventBus.$on("noteChanged", this.noteChanged);
   },
   methods: {
     loadNotes() {
@@ -44,31 +45,12 @@ export default {
       console.log(noteId);
       noteService.tooglePin(noteId);
     },
-    changeInfo(noteInfo, noteId) {
-      console.log("noteInfo", noteInfo);
-      console.log("noteId", noteId);
-
-      noteService.getById(noteId).then((note) => {
-        noteService.save(note).then(this.loadNotes);
+    noteChanged(note) {
+      console.log("changed", note);
+      noteService.save(note).then((note) => {
+        this.loadNotes();
+        console.log("hfhfhf", note);
       });
-      // noteService
-      //   .save(note)
-      //   .then(() => {
-      //     const msg = {
-      //       txt: "Save Successfully",
-      //       type: "success",
-      //     };
-      //     eventBus.$emit("showMsg", msg);
-      //     this.loadNotes();
-      //   })
-      //   .catch((err) => {
-      //     console.log("err", err);
-      //     const msg = {
-      //       txt: "Error. Please try later",
-      //       type: "error",
-      //     };
-      //     eventBus.$emit("showMsg", msg);
-      //   });
     },
     changeTxtColor(txtColor, noteId) {
       noteService.changeTxtColor(txtColor, noteId);
@@ -115,7 +97,7 @@ export default {
       });
       console.log(filterNotes);
 
-      return filterNotes;
+      return this.notes;
     },
   },
 

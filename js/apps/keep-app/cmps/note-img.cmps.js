@@ -16,6 +16,9 @@ export default {
             <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
         </div>
         <img class="note-img" :src="note.info.url"/>
+        <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
+        <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote" ></note-edit>
+        </transition>
       </section>`,
 
   data() {

@@ -36,8 +36,9 @@ function deleteNote(notesId) {
 // }
 
 function save(note) {
-  if (note.id) return storageService.put(NOTE_KEY, gNotes);
-  else return storageService.post(NOTE_KEY, gNotes);
+  console.log("save_servis", note);
+  if (note.id) return storageService.put(NOTE_KEY, note);
+  else return storageService.post(NOTE_KEY, note);
 }
 
 function changeBcgColor(bcgColor, noteId) {

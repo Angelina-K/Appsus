@@ -25,7 +25,7 @@ export default {
                 </li>
             </ul> -->
         <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
-        <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote" @saveChanges="changeInfo"></note-edit>
+        <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote" ></note-edit>
         </transition>
         <div class="edit-modal" v-if="editNote"></div>
     </section>
@@ -61,15 +61,9 @@ export default {
     deleteNote(noteId) {
       this.$emit("deleteNote", noteId);
     },
-
     editNoteInfo(note) {
       (this.selectedNote = note), (this.editNote = true);
       console.log(note);
-    },
-    changeInfo(noteInfo, noteId) {
-      this.$emit("changeInfo", noteInfo, noteId);
-      console.log(noteId);
-      console.log(noteInfo);
     },
   },
   computed: {},

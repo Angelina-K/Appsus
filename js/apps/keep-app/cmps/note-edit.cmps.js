@@ -1,4 +1,5 @@
 import { noteService } from "../services/note-service.cmps.js";
+import { eventBus } from "../../../services/event-bus-service.js";
 
 export default {
   name: "note-edit",
@@ -37,7 +38,7 @@ export default {
       this.closeEdit();
     },
     saveChanges() {
-      noteService.save(this.noteToEdit);
+      eventBus.$emit("noteChanged", this.noteToEdit);
       this.closeEdit();
     },
   },
