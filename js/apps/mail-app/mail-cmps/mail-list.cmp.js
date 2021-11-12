@@ -9,7 +9,7 @@ export default {
     <ul class="clean-list">
       <li v-for="(email,idx) in emails" :class="{read: email.isRead }" class="flex align-center" :key="email.id">
           <input @change="selected(email)" type="checkbox">
-          <button :name="idx" :class="{starred: email.isStarred}" @click.stop="starred(email.id,idx)">star</button>
+          <button :name="idx" :class="{starred: email.isStarred}" @click.stop="starred(email.id)">star</button>
             <mailPreview :email="email" @click.native="emailClicked(email.id)"/>
         </li>
     </ul>
@@ -20,6 +20,18 @@ export default {
   //     starBtns: null,
   // };
   // },
+  // watch: {
+  //   emails: {
+  //     handler(newVal, oldVal) {
+  //       console.log("emails has changed!");
+  //     },
+  //     deep: true,
+  //   },
+  // },
+  // activeBtn(newVal, oldVal) {
+  //   // console.log("this.activeBtn", this.activeBtn);
+  //   this.$emit("filtered", this.activeBtn);
+  // },
   methods: {
     emailClicked(emailId) {
       this.$router.push("/mail/" + emailId);
@@ -28,6 +40,7 @@ export default {
       this.$emit("selected", emailId);
     },
     starred(emailId) {
+      // console.log("starred", email.isStarred);
       this.$emit("starred", emailId);
     },
   },
