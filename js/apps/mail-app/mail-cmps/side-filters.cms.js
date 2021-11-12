@@ -15,6 +15,8 @@ export default {
     >Read</button>
     <button   @click="activeBtn = 'unread'" :class="{active: activeBtn === 'unread' }"
     >Unread</button>
+    <button   @click="activeBtn = 'deleted'" :class="{active: activeBtn === 'deleted' }"
+    >Deleted</button>
     <span >read:</span>
     <span>{{read}}</span>
   </section>
@@ -32,6 +34,7 @@ export default {
   watch: {
     activeBtn(newVal, oldVal) {
       // console.log("this.activeBtn", this.activeBtn);
+      // console.log(this.activeBtn);
       this.$emit("filtered", this.activeBtn);
     },
   },
