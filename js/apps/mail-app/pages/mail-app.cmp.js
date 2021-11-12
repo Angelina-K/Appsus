@@ -21,11 +21,13 @@ export default {
       emails: null,
       filterBy: "inbox",
       selectedEmails: null,
+      removedEmails: null,
     };
   },
   created() {
     this.loadEmails();
     eventBus.$on("emailRead", this.markAsRead);
+    eventBus.$on("removeEmail", this.remove);
   },
   // watch: {
   //   emails(newVal, oldVal) {
@@ -37,16 +39,26 @@ export default {
     loadEmails() {
       mailService.query().then((emails) => {
         this.emails = emails;
-        // console.log(emails);
       });
-      // this.loadEmails();
+      mailService.removedQuery().then((emails) => {
+        this.removedEmails = emails;
+      });
     },
     setFilter(filterBy) {
+      console.log(filterBy);
       this.filterBy = filterBy;
     },
     selectEmail() {
       if (!this.selectedEmails) this.selectedEmails = [];
       this.selectedEmails.push(email);
+    },
+    remove(emailId) {
+      mailService.getById(emailId).then((email) => {
+        email.isRemoves = true;
+        console.log(email);
+        mailService.saveToRemoved(email);
+      });
+      mailService.remove(emailId).then(this.loadEmails);
     },
     starEmail(emailId) {
       if (this.emails) {
@@ -75,26 +87,31 @@ export default {
   computed: {
     emailsForDisplay() {
       if (this.emails && this.filterBy) {
-        const emailsToShow = this.emails.filter((email) => {
-          switch (this.filterBy) {
-            case "inbox":
-              return email.to === "me";
-            case "starred":
-              return email.isStarred;
-            case "sent":
-              return email.from === "me";
-            case "drafts":
-              // FIXME add drafts
-              console.log("drafts");
-              break;
-            case "read":
-              return email.isRead;
-            case "unread":
-              return !email.isRead;
-            default:
-              return email;
-          }
-        });
+        let emailsToShow;
+        if (this.filterBy === "deleted") {
+          emailsToShow = this.removedEmails;
+        } else {
+          emailsToShow = this.emails.filter((email) => {
+            switch (this.filterBy) {
+              case "inbox":
+                return email.to === "me";
+              case "starred":
+                return email.isStarred;
+              case "sent":
+                return email.from === "me";
+              case "drafts":
+                // FIXME add drafts
+                console.log("drafts");
+                break;
+              case "read":
+                return email.isRead;
+              case "unread":
+                return !email.isRead;
+              default:
+                return email;
+            }
+          });
+        }
         return emailsToShow;
       }
     },

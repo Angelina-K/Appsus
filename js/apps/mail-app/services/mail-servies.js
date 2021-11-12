@@ -3,15 +3,19 @@ import { utilService } from "../../../services/util-service.js";
 
 export const mailService = {
   query,
+  removedQuery,
   getById,
-  // remove,
+  remove,
   save,
-  // getById,
+  saveToRemoved,
   // addReview
 };
 
 const EMAILS_KEY = "emails";
 let gEmails;
+
+const REMOVED_KEY = "removedEmails";
+let gRemoved = [];
 
 _createEmails();
 
@@ -20,14 +24,14 @@ const loggedinUser = {
   fullname: "Mahatma Appsus",
 };
 
-const email = {
-  id: "e101",
-  subject: "Miss you!",
-  body: "Would love to catch up sometimes",
-  isRead: false,
-  sentAt: 1551133930594,
-  // to: "momo@momo.com",
-};
+// const email = {
+//   id: "e101",
+//   subject: "Miss you!",
+//   body: "Would love to catch up sometimes",
+//   isRead: false,
+//   sentAt: 1551133930594,
+//   // to: "momo@momo.com",
+// };
 
 const criteria = {
   status: "inbox/sent/trash/draft",
@@ -41,14 +45,27 @@ function query() {
   return storageService.query(EMAILS_KEY);
 }
 
+function removedQuery() {
+  return storageService.query(REMOVED_KEY);
+}
+
 function getById(emailId) {
   return storageService.get(EMAILS_KEY, emailId);
 }
 
 function save(email) {
-  // console.log("saveing mail", email);
   if (email.id) return storageService.put(EMAILS_KEY, email);
   else return storageService.post(EMAILS_KEY, email);
+}
+
+function remove(emailId) {
+  // saveToRemoved(email);
+  return storageService.remove(EMAILS_KEY, emailId);
+}
+
+function saveToRemoved(email) {
+  gRemoved.push(email);
+  utilService.saveToStorage(REMOVED_KEY, gRemoved);
 }
 
 function _createEmails() {
@@ -73,6 +90,7 @@ function _createEmail(subject, body, from, to) {
     body,
     isRead: false,
     isStarred: false,
+    isRemoved: false,
     sentAt: new Date().toLocaleString(),
     from,
     to,
