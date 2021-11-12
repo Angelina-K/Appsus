@@ -1,15 +1,18 @@
 @import url(./mail-app-cmps.css);
-/* @import url(./compose-cmp.css); */
+@import url(./compose-cmp.css);
 
 .side-filters {
   width: 150px;
+}
+.search-list {
+  margin-left: 15px;
+  margin-right: 15px;
+  /* padding: 10px; */
 }
 .mail-list {
   /* height: 100vh; */
   height: inherit;
   /* height: 70vh; */
-  margin-left: 15px;
-  margin-right: 15px;
 
   /* padding: 10px; */
   border: 1px solid grey;

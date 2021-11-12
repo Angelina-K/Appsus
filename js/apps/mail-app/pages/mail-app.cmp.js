@@ -3,18 +3,37 @@ import { eventBus } from "../../../services/event-bus-service.js";
 import mailList from "../mail-cmps/mail-list.cmp.js";
 import sideFilters from "../mail-cmps/side-filters.cms.js";
 import compose from "../pages/compose.cmp.js";
+import searchFilter from "../mail-cmps/search-filter.cmp.js";
 
 export default {
   name: "mail-app",
   template: `
-    <section class="mail-app flex col">
-      <button @click="openCompose">Compose</button>
+    <!-- <section class="mail-app flex col">
+      <div class="flex space-between">
+        <button @click="openCompose" class="compose-btn">Compose</button>
+      <searchFilter/>
+      </div>
       <div class="flex ">
         <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
         <mailList @starred="starEmail" @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
       </div>
       <compose/>
+    </section> -->
+
+    <section class="mail-app flex ">
+      <div class="flex col">
+        <button @click="openCompose" class="compose-btn">Compose</button>
+        <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
+      </div>
+      <div class="search-list flex col">
+        <searchFilter/>
+        <mailList @starred="starEmail" @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
+        </div>
+      <compose/>
     </section>
+
+
+
 `,
   data() {
     return {
@@ -130,5 +149,6 @@ export default {
     mailList,
     sideFilters,
     compose,
+    searchFilter,
   },
 };
