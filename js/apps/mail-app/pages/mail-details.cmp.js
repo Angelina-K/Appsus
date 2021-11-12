@@ -7,7 +7,10 @@ export default {
   template: `
   <section v-if="this.email" class="mail-Details flex col">
     <button @click.nativ="goBack">Back</button>
-    <titleDisplay :title="email.subject"/>
+    <div class="flex align-center space-between">
+      <titleDisplay :title="email.subject"/>
+      <span>{{formateTime}}</span>
+    </div>
     <div class="flex">
       <strong>{{email.from}}</strong><span>hh@example.com</span><br>
       <span>{{email.to }}></span>
@@ -56,6 +59,11 @@ export default {
       //   console.log(this.email);
       //   mailService.save(this.email);
       // }
+    },
+  },
+  computed: {
+    formateTime() {
+      return this.email.sentAt.substring(0, 21);
     },
   },
   components: {

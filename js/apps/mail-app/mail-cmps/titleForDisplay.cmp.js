@@ -8,6 +8,7 @@ export default {
 `,
   computed: {
     titleForDisplay() {
+      if (!this.title) return;
       const words = this.title.split(" ");
       const title = words.map((word) => {
         return word[0].toUpperCase() + word.substring(1);

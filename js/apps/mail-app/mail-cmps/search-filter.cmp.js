@@ -1,13 +1,22 @@
 export default {
   name: "search",
-  // props: ["title"],
   template: `
       <section >
           <label for="search">
-              <input class="search-bar" type="text" placeholder="Search mail">
+              <input @change.lazy="filtered" v-model="filterByTxt" class="search-bar" type="text" placeholder="Search mail">
           </label>
       </section>
   `,
+  data() {
+    return {
+      filterByTxt: "",
+    };
+  },
+  methods: {
+    filtered() {
+      this.$emit("filteredByTxt", this.filterByTxt);
+    },
+  },
   computed: {},
   components: {},
 };

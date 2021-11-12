@@ -5,13 +5,13 @@ export default {
   template: `
   <section  @mouseover="mouseOver" @mouseout="mouseOut" class="mail-preview pointer" >
       <strong>{{email.from}}</strong>
-      <strong>{{email.subject}}</strong>
-      <p>{{email.body}}</p>
+      <strong>{{shordSubject}}</strong>
+      <p>{{shortBody}}</p>
       <div v-if="showBtns && filterBy!=='deleted'" class="prev-btns">
         <button @click.stop="read">Read</button>
         <button @click.stop="remove">Del</button>
       </div>
-      <p v-else>{{email.sentAt}}</p>
+      <p v-else>{{shortDate}}</p>
   </section>
 `,
   data() {
@@ -34,6 +34,20 @@ export default {
       this.email.isRemoved = true;
       // console.log(this.email.id);
       eventBus.$emit("removeEmail", this.email.id);
+    },
+  },
+  computed: {
+    shortBody() {
+      const txt = this.email.body;
+      return txt.length > 40 ? txt.substring(0, 40) : txt;
+    },
+    shordSubject() {
+      const txt = this.email.subject;
+      return txt.length > 20 ? txt.substring(0, 20) : txt;
+    },
+    shortDate() {
+      const date = this.email.sentAt;
+      return date.substring(4, 10);
     },
   },
 };

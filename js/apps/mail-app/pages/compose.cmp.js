@@ -53,7 +53,7 @@ export default {
     };
   },
   created() {
-    eventBus.$on("sohwCompose", this.show);
+    eventBus.$on("showCompose", this.show);
     // this.emptyEmail = mailService.getEmpyEmail();
     // if (this.emptyEmail) {
     //   console.log(this.emptyEmail);

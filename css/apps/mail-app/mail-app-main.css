@@ -1,6 +1,11 @@
 @import url(./mail-app-cmps.css);
 @import url(./compose-cmp.css);
 
+h1,
+h2,
+p {
+  margin: 0;
+}
 .side-filters {
   width: 150px;
 }

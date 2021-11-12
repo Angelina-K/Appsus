@@ -74,8 +74,13 @@ function _createEmails() {
   if (!emails || !emails.length) {
     emails = [
       _createEmail("work", "do some work", "me", "to: adi"),
-      _createEmail("something", "do something", "Aliexpress", "me"),
-      _createEmail("subject", "nice body", "eBay", "me"),
+      _createEmail(
+        "somethinggggggggggggggggggg",
+        "do something kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+        "Aliexpress",
+        "me"
+      ),
+      _createEmail("subjecttttttttttttttt", "nice body", "eBay", "me"),
       _createEmail("no subject", "whatever", "next.uk", "me"),
     ];
   }
@@ -90,6 +95,7 @@ function getEmpyEmail() {
     isRead: false,
     isStarred: false,
     isRemoved: false,
+    isSelected: false,
     sentAt: "",
     from: "me",
     to: "",
@@ -103,25 +109,13 @@ function _createEmail(subject, body, from, to) {
     isRead: false,
     isStarred: false,
     isRemoved: false,
-    sentAt: new Date().toLocaleString(),
+    isSelected: false,
+    sentAt: new Date().toString(),
     from,
     to,
     // fromName: from,
     // ${from}@momo.com
   };
+  // new Date().toLocaleString(),
   return email;
 }
-
-// template: `
-//     <div class="book-preview">
-//         <h3> Title: {{book.title}} </h3>
-//         <p :class="price"> Price: {{currencyIcon}}</p>
-//         <img class="book-img" :src="book.thumbnail">
-//         <img class="sale-img" :src=sale>
-//     </div>`,
-
-//     computed: {
-//         price() {
-//             if (this.book.listPrice.amount > 150) return 'red'
-//             if (this.book.listPrice.amount < 20) return 'green'
-//         },
