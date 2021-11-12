@@ -1,8 +1,10 @@
 import { eventBus } from "../../../services/event-bus-service.js";
 import { noteService } from "../services/note-service.cmps.js";
-import noteAdd from "../cmps/note-add.cmps.js";
-import noteList from "../cmps/note-list.cpms.js";
 import { storageService } from "../../../services/async-storage-service.js";
+
+import noteAdd from "../cmps/note-add.cmps.js";
+import noteFilter from "../cmps/note-filter.cmps.js";
+import noteList from "../cmps/note-list.cmps.js";
 
 export default {
   name: "note-app",
@@ -10,13 +12,14 @@ export default {
           <section class="note main-layout ">
               <div class="note-app">
               <h1>Welcome To keep</h1>
-              <note-add></note-add>
-              <!-- <book-filter @filtered="setFilter"/> -->
               <h3 class="my-notes-handling"> My Notes</h3>
+              
+              <note-add></note-add>
+              <note-filter @filtered="setFilter"></note-filter>
+
+              
               <section class="notes-containers">
-                <div v-for="note in notes">
-              <note-list :note="note" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @changeInfo="changeInfo"/></note-list>
-                </div>
+              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @changeInfo="changeInfo"/></note-list>
                  </section>
             </div>
           </section>
@@ -24,6 +27,7 @@ export default {
   data() {
     return {
       notes: null,
+      filterBy: null,
     };
   },
   created() {
@@ -88,11 +92,33 @@ export default {
           eventBus.$emit("showMsg", msg);
         });
     },
+    setFilter(filterBy) {
+      this.filterBy = filterBy;
+    },
+  },
+  computed: {
+    notesToShow() {
+      if (!this.filterBy) return this.notes;
+      console.log(this.notes);
+
+      const searchStr = this.filterBy.titleTxt.toLowerCase();
+      const Type = this.filterBy.type ? this.filterBy.type : "All";
+
+      const filterNotes = this.nots.filter((note) => {
+        return (
+          note.title.toLowerCase().includes(searchStr) && note.filterBy.type
+        );
+      });
+      console.log(filterNotes);
+
+      return filterNotes;
+    },
   },
 
   components: {
     noteAdd,
     noteService,
     noteList,
+    noteFilter,
   },
 };

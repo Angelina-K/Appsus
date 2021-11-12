@@ -3,13 +3,13 @@ export default {
   template: `
         <header class="header flex main-layout align-center space-between">
             <div class="logo">
-                <h3>LOGO</h3>
+                <h3><A>APPSUS</A></h3>
             </div>
-            <nav class="">
+            <nav>
                 <router-link to="/" active-class="active-link" exact>Home</router-link> |
                 <router-link to="/mail">Mail</router-link> |
                 <router-link to="/keep">Keep</router-link> |
-                <router-link to="/book">Book</router-link> |
+                <router-link to="/book">Books</router-link> |
                 <router-link to="/about">About</router-link> 
             </nav>
         </header>

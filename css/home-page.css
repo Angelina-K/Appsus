@@ -1,0 +1,20 @@
+.home-headline {
+  text-align: center;
+}
+
+.logo-header {
+  font-size: 4rem;
+  color: #c9d5a5;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-family: roboto;
+  text-transform: uppercase;
+}
+
+.logo-sec {
+  font-size: 2rem;
+  font-family: roboto;
+}
+
+.logo-img {
+  width: 300px;
+}

@@ -3,22 +3,23 @@ import noteTxt from "./note-txt.cmps.js";
 import noteVideo from "./note-video.cmps.js";
 import noteTodos from "./note-todos.cmps.js";
 import noteEdit from "./note-edit.cmps.js";
+import noteMap from "../cmps/note-map.cmps.js";
 
 export default {
   name: "note-list",
-  props: ["note", "filterType", "searchByKeyword"],
+  props: ["notes", "filter"],
   template: `
     <section>
-        <h4>Pinned Notes:</h4>
-            <ul>
-                <li class="clean-list">
+        <h4 >Pinned Notes:</h4>
+            <ul class="notes-section">
+                <li class="clean-list" v-for="note in notes" >
                 <component :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
             </ul>
-        <h4>Unpinned Notes:</h4>
-         <!-- <ul>
-                <li class="clean-list">
+        <!-- <h4 v-if="pinnedOn">Unpinned Notes:</h4>
+         <ul v-else>
+                <li class="clean-list" v-for="note in unpinnedNotes">
                 <component :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
@@ -40,9 +41,6 @@ export default {
       this.$emit("tooglePin", this.note.id);
       console.log(this.note.id);
     },
-    editNoteInfo(note) {
-      (this.selectedNote = note), (this.editNote = true);
-    },
     closeEdit() {
       this.editNote = false;
     },
@@ -61,18 +59,23 @@ export default {
     deleteNote(noteId) {
       this.$emit("deleteNote", noteId);
     },
+    editNoteInfo(note) {
+      (this.selectedNote = note), (this.editNote = true);
+      console.log(note);
+    },
     changeInfo(noteInfo, noteId) {
       this.$emit("changeInfo", noteInfo, noteId);
+      console.log(noteInfo);
+      console.log(noteId);
     },
   },
-  computed: {
-    pinnedNotes() {},
-  },
+  computed: {},
   components: {
     noteImg,
     noteTxt,
     noteVideo,
     noteTodos,
     noteEdit,
+    noteMap,
   },
 };

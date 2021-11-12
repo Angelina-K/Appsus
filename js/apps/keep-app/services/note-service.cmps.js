@@ -70,6 +70,11 @@ function _createNotes() {
         "#444247"
       ),
       _createNote(
+        "note-map",
+        { titleTxt: "Home Sweet Home", location: "Tel Aviv" },
+        "#68936e"
+      ),
+      _createNote(
         "note-img",
         {
           titleTxt: "My favorite movie",

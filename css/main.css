@@ -1,5 +1,6 @@
 @import url(./parts/fonts.css);
 @import url(./parts/helpers.css);
+@import url(./home-page.css);
 
 /* MAIL CSS */
 @import url(./apps/mail-app/mail-app-main.css);
@@ -11,6 +12,7 @@
 @import url(./apps/keep-app/keep-main-app.css);
 @import url(./apps/keep-app/keep-note-display.css);
 @import url(./apps/keep-app/note-edit.css);
+@import url(./apps/keep-app/kepp-note-add.css);
 
 * {
   box-sizing: border-box;

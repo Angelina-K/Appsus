@@ -15,7 +15,7 @@ export default {
                 <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
               <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
           </div>
-          <iframe width="200" :src="getUrl" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" :src="getUrl" frameborder="0" allowfullscreen></iframe>
         </section>`,
 
   data() {
