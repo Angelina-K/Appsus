@@ -8,7 +8,11 @@ export default {
         <section class="note-edit" :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}">
         <section v-if="noteToEdit" class="txt-area">
             <input type="text" :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.titleTxt">
-            <textarea :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.bodyTxt"></textarea>
+            <textarea v-if="note.type === 'note-txt'" :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.bodyTxt"></textarea>
+            <textarea v-if="note.type === 'note-map'"  :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.location"></textarea>
+            <textarea v-if="note.type === 'note-img'"  :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.url"></textarea>
+            <textarea v-if="note.type === 'note-todos'"  :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.todos"></textarea>
+            <textarea v-if="note.type === 'note-video'"  :style="{color: note.style.txtColor, backgroundColor: note.style.bcgColor}" v-model="noteToEdit.info.url"></textarea>
         </section>
         <section class="btn-area">
             <button class="edit-btn" @click="saveChanges">Save</button>
@@ -24,9 +28,9 @@ export default {
   },
   created() {
     noteService.getById(this.note.id).then((note) => {
-      console.log(this.note.id);
+      // console.log(this.note.id);
       this.noteToEdit = note;
-      console.log(this.noteToEdit);
+      // console.log(this.noteToEdit);
     });
   },
   methods: {
@@ -42,4 +46,5 @@ export default {
       this.closeEdit();
     },
   },
+  computed: {},
 };

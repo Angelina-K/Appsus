@@ -41,7 +41,7 @@ export default {
     },
     tooglePin() {
       this.$emit("tooglePin", this.note.id);
-      console.log(this.note.id);
+      // console.log(this.note.id);
     },
     closeEdit() {
       this.editNote = false;
@@ -63,7 +63,7 @@ export default {
     },
     editNoteInfo(note) {
       (this.selectedNote = note), (this.editNote = true);
-      console.log(note);
+      // console.log(note);
     },
   },
   computed: {},

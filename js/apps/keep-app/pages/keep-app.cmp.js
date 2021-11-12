@@ -37,19 +37,19 @@ export default {
   methods: {
     loadNotes() {
       noteService.query().then((notes) => {
-        console.log("app notes", notes);
+        // console.log("app notes", notes);
         this.notes = notes;
       });
     },
     tooglePin(noteId) {
-      console.log(noteId);
+      // console.log(noteId);
       noteService.tooglePin(noteId);
     },
     noteChanged(note) {
       console.log("changed", note);
       noteService.save(note).then((note) => {
         this.loadNotes();
-        console.log("hfhfhf", note);
+        // console.log("hfhfhf", note);
       });
     },
     changeTxtColor(txtColor, noteId) {
@@ -95,7 +95,7 @@ export default {
           note.title.toLowerCase().includes(searchStr) && note.filterBy.type
         );
       });
-      console.log(filterNotes);
+      // console.log(filterNotes);
 
       return this.notes;
     },

@@ -36,7 +36,7 @@ function deleteNote(notesId) {
 // }
 
 function save(note) {
-  console.log("save_servis", note);
+  // console.log("save_servis", note);
   if (note.id) return storageService.put(NOTE_KEY, note);
   else return storageService.post(NOTE_KEY, note);
 }
