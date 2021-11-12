@@ -35,11 +35,11 @@ export default {
   methods: {
     tooglePin() {
       this.$emit("tooglePin", this.note.id);
-      console.log(this.note.id);
+      // console.log(this.note.id);
     },
     editNoteInfo() {
       this.$emit("editNoteInfo", this.note);
-      console.log(this.note);
+      // console.log(this.note);
     },
     openTxtColor() {
       this.$refs.txtColor.click();

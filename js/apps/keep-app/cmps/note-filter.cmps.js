@@ -4,7 +4,7 @@ export default {
          <section class="filter-notes">
         <button ><i class="fas fa-search fa-lg"></i></button>
 
-        <input @input="filter" v-model="filterBy.titleTxt" type="text" placeholder="Title">
+        <input @input="filter" v-model="filterBy.info" type="text" placeholder="Title">
         <select v-model="filterBy.type">
             <option>All</option>
             <option value="note-txt">Text Notes</option>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       filterBy: {
-        titleTxt: "",
+        info: "",
         type: "All",
       },
     };

@@ -5,7 +5,6 @@ export default {
   props: ["noteAdd"],
   template: `
   <section class="note-add">
-            <!-- <input  type="text" :placeholder="placeholderByType" v-model="noteBody"/> -->
         <div class="control-area">
             <button @click="setType('note-txt')" title="Text note"><i class="fas fa-font fa-2x"></i></button>
             <button @click="setType('note-img')" title="Image note"><i class="far fa-image fa-2x"></i></button>

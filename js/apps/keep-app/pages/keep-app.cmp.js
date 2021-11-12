@@ -16,10 +16,9 @@ export default {
               
               <note-add></note-add>
               <note-filter @filtered="setFilter"></note-filter>
-
               
               <section class="notes-containers">
-              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @changeInfo="changeInfo"/></note-list>
+              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor"/></note-list>
                  </section>
             </div>
           </section>
@@ -32,6 +31,7 @@ export default {
   },
   created() {
     this.loadNotes();
+    eventBus.$on("noteChanged", this.noteChanged);
   },
   methods: {
     loadNotes() {
@@ -41,30 +41,15 @@ export default {
       });
     },
     tooglePin(noteId) {
-      console.log(noteId);
+      // console.log(noteId);
       noteService.tooglePin(noteId);
     },
-    changeInfo(noteInfo, noteId) {
-      console.log("noteInfo", noteInfo);
-      console.log("noteId", noteId);
-
-      storageService
-        .put(noteInfo, noteId)
-        .then(() => {
-          const msg = {
-            txt: "Save Successfully",
-            type: "success",
-          };
-          eventBus.$emit("showMsg", msg);
-        })
-        .catch((err) => {
-          console.log("err", err);
-          const msg = {
-            txt: "Error. Please try later",
-            type: "error",
-          };
-          eventBus.$emit("showMsg", msg);
-        });
+    noteChanged(note) {
+      console.log("changed", note);
+      noteService.save(note).then((note) => {
+        this.loadNotes();
+        // console.log("hfhfhf", note);
+      });
     },
     changeTxtColor(txtColor, noteId) {
       noteService.changeTxtColor(txtColor, noteId);
@@ -101,17 +86,19 @@ export default {
       if (!this.filterBy) return this.notes;
       console.log(this.notes);
 
-      const searchStr = this.filterBy.titleTxt.toLowerCase();
-      const Type = this.filterBy.type ? this.filterBy.type : "All";
+      // const searchStr = this.filterBy.info.titleTxt.toLowerCase();
+      const Type = this.filterBy.type
+        ? this.filterBy.type
+        : this.filterBy.type === "All";
 
       const filterNotes = this.nots.filter((note) => {
         return (
           note.title.toLowerCase().includes(searchStr) && note.filterBy.type
         );
       });
-      console.log(filterNotes);
+      // console.log(filterNotes);
 
-      return filterNotes;
+      return this.notes;
     },
   },
 

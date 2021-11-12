@@ -8,6 +8,8 @@ export const noteService = {
   changeBcgColor,
   changeTxtColor,
   tooglePin,
+  save,
+  getEmptyNote,
 };
 
 const NOTE_KEY = "note";
@@ -29,8 +31,14 @@ function deleteNote(notesId) {
   return storageService.remove(NOTE_KEY, notesId);
 }
 
-function _save(entityType, entities) {
-  localStorage.setItem(entityType, JSON.stringify(entities));
+// function _save(entityType, entities) {
+//   localStorage.setItem(entityType, JSON.stringify(entities));
+// }
+
+function save(note) {
+  // console.log("save_servis", note);
+  if (note.id) return storageService.put(NOTE_KEY, note);
+  else return storageService.post(NOTE_KEY, note);
 }
 
 function changeBcgColor(bcgColor, noteId) {
@@ -149,7 +157,23 @@ function _createNotes() {
 function _createNote(type, info, bcgColor = "rgb(68, 66, 71)") {
   return {
     id: utilService.makeId(),
-    type: type,
+    type,
+    isPinned: false,
+    isMarked: false,
+    isOpen: false,
+    createdTime: Date.now(),
+    style: {
+      txtColor: "#f5f5f5",
+      bcgColor,
+    },
+    info: info,
+  };
+}
+
+function getEmptyNote(type, info, bcgColor = "rgb(68, 66, 71)") {
+  return {
+    id: utilService.makeId(),
+    type,
     isPinned: false,
     isMarked: false,
     isOpen: false,
