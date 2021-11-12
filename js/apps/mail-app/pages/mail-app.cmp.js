@@ -25,6 +25,7 @@ export default {
   },
   created() {
     this.loadEmails();
+    eventBus.$on("emailRead", this.markAsRead);
   },
   // watch: {
   //   emails(newVal, oldVal) {
@@ -51,14 +52,23 @@ export default {
       if (this.emails) {
         mailService.getById(emailId).then((email) => {
           email.isStarred = !email.isStarred;
-          mailService.save(email);
+          mailService.save(email).then(this.loadEmails);
         });
       }
       this.loadEmails();
     },
+    markAsRead(emailId) {
+      if (this.emails) {
+        mailService.getById(emailId).then((email) => {
+          email.isRead = !email.isRead;
+          mailService.save(email).then(this.loadEmails);
+        });
+      }
+    },
     openCompose() {
       // this.showCompose = true;
       eventBus.$emit("sohwCompose");
+
       // eventBus.$emit("sohwCompose");
     },
   },

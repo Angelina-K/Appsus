@@ -1,5 +1,6 @@
 import { mailService } from "../services/mail-servies.js";
 import titleDisplay from "../mail-cmps/titleForDisplay.cmp.js";
+import { eventBus } from "../../../services/event-bus-service.js";
 
 export default {
   name: "mail-Details",
@@ -20,7 +21,6 @@ export default {
     };
   },
   created() {
-    // FIXME updates after refreshing
     const emailId = this.$route.params.mailId;
     mailService.getById(emailId).then((email) => {
       this.email = email;
@@ -50,9 +50,12 @@ export default {
     markAsRead() {
       if (this.email && !this.email.isRead) {
         this.email.isRead = true;
-        console.log(this.email);
-        mailService.save(this.email);
+        eventBus.$emit("emailRead", this.email.id);
       }
+      // if (this.email && !this.email.isRead) {
+      //   console.log(this.email);
+      //   mailService.save(this.email);
+      // }
     },
   },
   components: {
