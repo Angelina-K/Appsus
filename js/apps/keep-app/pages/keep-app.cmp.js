@@ -48,23 +48,27 @@ export default {
       console.log("noteInfo", noteInfo);
       console.log("noteId", noteId);
 
-      storageService
-        .put(noteInfo, noteId)
-        .then(() => {
-          const msg = {
-            txt: "Save Successfully",
-            type: "success",
-          };
-          eventBus.$emit("showMsg", msg);
-        })
-        .catch((err) => {
-          console.log("err", err);
-          const msg = {
-            txt: "Error. Please try later",
-            type: "error",
-          };
-          eventBus.$emit("showMsg", msg);
-        });
+      noteService.getById(noteId).then((note) => {
+        noteService.save(note).then(this.loadNotes);
+      });
+      // noteService
+      //   .save(note)
+      //   .then(() => {
+      //     const msg = {
+      //       txt: "Save Successfully",
+      //       type: "success",
+      //     };
+      //     eventBus.$emit("showMsg", msg);
+      //     this.loadNotes();
+      //   })
+      //   .catch((err) => {
+      //     console.log("err", err);
+      //     const msg = {
+      //       txt: "Error. Please try later",
+      //       type: "error",
+      //     };
+      //     eventBus.$emit("showMsg", msg);
+      //   });
     },
     changeTxtColor(txtColor, noteId) {
       noteService.changeTxtColor(txtColor, noteId);

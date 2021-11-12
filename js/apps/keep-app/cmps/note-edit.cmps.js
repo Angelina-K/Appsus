@@ -53,11 +53,7 @@ export default {
           titleTxt: this.noteTitle,
           location: this.noteBody,
         };
-      } else if (
-        this.note.type === "note-img" ||
-        "note-video" ||
-        "note-audio"
-      ) {
+      } else if (this.note.type === "note-img" || "note-video") {
         noteInfo = {
           titleTxt: this.noteTitle,
           url: this.noteBody,
@@ -77,9 +73,6 @@ export default {
         this.noteBody = this.note.info.url;
         break;
       case "note-video":
-        this.noteBody = this.note.info.url;
-        break;
-      case "note-audio":
         this.noteBody = this.note.info.url;
         break;
       case "note-todos":

@@ -65,8 +65,8 @@ export default {
     },
     changeInfo(noteInfo, noteId) {
       this.$emit("changeInfo", noteInfo, noteId);
-      console.log(noteInfo);
       console.log(noteId);
+      console.log(noteInfo);
     },
   },
   computed: {},

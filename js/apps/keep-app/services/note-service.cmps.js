@@ -8,6 +8,7 @@ export const noteService = {
   changeBcgColor,
   changeTxtColor,
   tooglePin,
+  save,
 };
 
 const NOTE_KEY = "note";
@@ -29,8 +30,13 @@ function deleteNote(notesId) {
   return storageService.remove(NOTE_KEY, notesId);
 }
 
-function _save(entityType, entities) {
-  localStorage.setItem(entityType, JSON.stringify(entities));
+// function _save(entityType, entities) {
+//   localStorage.setItem(entityType, JSON.stringify(entities));
+// }
+
+function save(note) {
+  if (note.id) return storageService.put(NOTE_KEY, gNotes);
+  else return storageService.post(NOTE_KEY, gNotes);
 }
 
 function changeBcgColor(bcgColor, noteId) {
