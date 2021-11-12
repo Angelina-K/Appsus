@@ -1,0 +1,66 @@
+.to-form-input-container {
+  flex-direction: row;
+  align-items: flex-start;
+  flex: 0.1;
+  border-width: 0;
+  outline: none;
+}
+.to-form-input {
+  flex: 1.5;
+  border-width: 0;
+  outline: none;
+}
+.cc-bcc-button {
+  background-color: white;
+  border-width: 0;
+  flex: 0.2;
+}
+.email-compose-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  height: 50%;
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.email-compose-contents {
+  overflow-y: auto;
+  border-width: 0;
+  flex: 3;
+  outline: none;
+}
+.email-compose-recipients {
+  border-width: 0;
+  border-bottom-width: 1px;
+  flex: 0.2;
+  outline: none;
+}
+.email-compose-subject {
+  border-width: 0;
+  border-bottom-width: 1px;
+  flex: 0.2;
+  outline: none;
+}
+.compose-email-title-button {
+  background-color: rgb(81, 81, 81);
+  color: white;
+  font-weight: bold;
+  flex-direction: row;
+  text-align: left;
+  flex: 0.1;
+  border-width: 0px;
+}
+.bottom-toolbar {
+  flex: 0.1;
+  flex-direction: row;
+}
+.send-button {
+  margin-left: 10px;
+  border-width: 0px;
+  border-radius: 5px;
+  background-color: rgb(71, 71, 152);
+  color: white;
+}
+.send-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}

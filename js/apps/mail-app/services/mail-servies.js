@@ -8,6 +8,7 @@ export const mailService = {
   remove,
   save,
   saveToRemoved,
+  getEmpyEmail,
   // addReview
 };
 
@@ -82,7 +83,18 @@ function _createEmails() {
   // console.log("gEmails", gEmails);
   utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
-
+function getEmpyEmail() {
+  return {
+    subject: "",
+    body: "",
+    isRead: false,
+    isStarred: false,
+    isRemoved: false,
+    sentAt: "",
+    from: "me",
+    to: "",
+  };
+}
 function _createEmail(subject, body, from, to) {
   const email = {
     id: utilService.makeId(),

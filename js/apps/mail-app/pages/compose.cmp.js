@@ -1,39 +1,60 @@
 import { eventBus } from "../../../services/event-bus-service.js";
+import { mailService } from "../services/mail-servies.js";
+
 export default {
   template: `
-    <section v-if="shouldShow" class="email-compose">
+    <section v-if="shouldShow" class="email-compose flex col">
+      <form @submit.prevent="onSend">
         <div class="email-compose-container">
-        <button class="compose-email-title-button" @click="setExpand()">New Message</button>
+        <button class="compose-email-title-button" @click="setExpand">New Message</button>
+        <!-- <label for="">To</label> -->
         <input v-if="isRecipientClicked" v-on:click="onRecipientFormClick(false)"  :placeholder="recipient" class="email-compose-recipients">
             <div v-else class="to-form-input-container">
                 <span>To</span>
-                <input v-model="recipient" placeholder="" class="to-form-input" >
-                <button class="cc-bcc-button">Cc</button>
-                <button class="cc-bcc-button">Bcc</button>
+                <input v-model="emptyEmail.to" placeholder="" class="to-form-input" >
+                <!-- <button class="cc-bcc-button">Cc</button>
+                <button class="cc-bcc-button">Bcc</button> -->
             </div>
-        <input v-model="subject"  v-on:click="onRecipientClick(true)" placeholder="Subject" class="email-compose-subject"">
-        <textarea v-model="message" v-on:click="onRecipientClick(true)" placeholder="" class="email-compose-contents"></textarea>
+            <input v-model="emptyEmail.subject"   placeholder="Subject" class="email-compose-subject">
+        <!-- <input v-model="subject"  v-on:click="onRecipientClick(true)" placeholder="Subject" class="email-compose-subject"> -->
+        <!-- <textarea v-model="body" v-on:click="onRecipientClick(true)" class="email-compose-contents"></textarea> -->
+        <textarea v-model="emptyEmail.body"  class="email-compose-contents"></textarea>
         <div class="bottom-toolbar"> 
-            <button @click="onSend()" class="send-button">Send</button>
+            <!-- <button @click="onSend" class="send-button">Send</button> -->
+            <button type="submit" class="send-button">Send</button>
         </div>
         </div>
         <button @click="close">Close</button>
-        
+        </form>
     </section>
     `,
   data() {
     return {
+      emptyEmail: {
+        subject: "",
+        body: "",
+        isRead: false,
+        isStarred: false,
+        isRemoved: false,
+        sentAt: "",
+        from: "me",
+        to: "",
+      },
+      // emptyEmail: null,
       shouldShow: false,
-      message: "",
-      recipient: "",
-      contents: "",
+      // body: "",
+      // recipient: "",
+      // contents: "",
       isRecipientClicked: false,
-      subject: "",
+      // subject: "",
       expand: true,
     };
   },
   created() {
     eventBus.$on("sohwCompose", this.show);
+    // this.emptyEmail = mailService.getEmpyEmail();
+    // if (this.emptyEmail) {
+    //   console.log(this.emptyEmail);
   },
   methods: {
     show() {
@@ -54,7 +75,8 @@ export default {
       this.recipient = this.recipient ? this.recipient : "Recipients";
     },
     onSend() {
-      console.log(this.recipient, this.subject, this.message);
+      (this.emptyEmail.sentAt = new Date().toLocaleString()),
+        mailService.save(this.emptyEmail).then(this.close);
     },
     setExpand() {
       this.expand = !this.expand;
