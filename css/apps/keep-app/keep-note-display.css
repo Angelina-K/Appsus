@@ -37,7 +37,10 @@
   border: none;
   cursor: pointer;
   background-color: hsla(0, 0%, 96%, 0);
-  color: #f5f5f5;
+}
+
+.edit-btn {
+  color: #e9ebe3;
 }
 
 .edit-btn:hover {

@@ -28,7 +28,7 @@
   border-radius: 5px;
   cursor: pointer;
   background-color: transparent;
-  color: rgb(165, 165, 165);
+  color: #b1b2ac;
   width: 50px;
   height: 50px;
   padding: 0;
@@ -43,7 +43,7 @@
 }
 
 .note-add button.selected-type {
-  color: black;
+  color: #68936e;
 }
 
 @media screen and (max-width: 1300px) {

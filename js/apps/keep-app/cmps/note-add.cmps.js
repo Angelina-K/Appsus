@@ -6,13 +6,13 @@ export default {
   template: `
   <section class="note-add">
   <div class="text-area">
-            <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
-            <input @click="openInput($event)" type="text" placeholder="Enter title for the note" v-if="isOn" v-model="noteTitle"/>
-            </transition>
-            <input @click="openInput($event)" type="text" :placeholder="placeholderByType" v-model="noteBody"/>
+    <input @click="openInput($event)" type="text" :placeholder="placeholderByType" v-model="noteBody"/>
+    <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
+    <input @click="openInput($event)" type="text" placeholder="Enter title for the note" v-if="isOn" v-model="noteTitle"/>
+    </transition>
         </div>
         <div class="control-area">
-            <button @click="setType('note-txt')" :class="{'selected-type': noteType === 'note-txt'}" title="Text note"><i class="fas fa-font fa-2x"></i></button>
+            <button @click="setType('note-txt')" :class="{'selected-type': noteType === 'note-txt'}" title="Text note"><i class="far fa-comment fa-2x"></i></i></button>
             <button @click="setType('note-img')" :class="{'selected-type': noteType === 'note-img'}" title="Image note"><i class="far fa-image fa-2x"></i></button>
             <button @click="setType('note-video')" :class="{'selected-type': noteType === 'note-video'}" title="Video note"><i class="fab fa-youtube fa-2x"></i></button>
             <button @click="setType('note-todos')" :class="{'selected-type': noteType === 'note-todos'}" title="List note"><i class="fas fa-list fa-2x"></i></button>

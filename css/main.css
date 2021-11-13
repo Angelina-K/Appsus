@@ -13,6 +13,7 @@
 @import url(./apps/keep-app/keep-note-display.css);
 @import url(./apps/keep-app/note-edit.css);
 @import url(./apps/keep-app/kepp-note-add.css);
+@import url(./apps/keep-app/note-filter.css);
 
 * {
   box-sizing: border-box;

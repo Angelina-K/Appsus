@@ -43,7 +43,7 @@ export default {
       this.$emit("changeBcgColor", this.bcgColor, this.note.id);
     },
     changeTxtColor() {
-      this.$emit("change-txt-color", this.txtColor, this.note.id);
+      this.$emit("changeTxtColor", this.txtColor, this.note.id);
     },
     deleteNote() {
       this.$emit("deleteNote", this.note.id);

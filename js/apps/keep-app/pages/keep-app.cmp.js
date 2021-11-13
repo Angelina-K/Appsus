@@ -13,7 +13,6 @@ export default {
           <section class="note main-layout ">
               <div class="note-app">
               <h1>Welcome To keep</h1>
-              <h3 class="my-notes-handling"> My Notes</h3>
               
               <note-add @addNote="addNote"></note-add>
               <note-filter @filtered="setFilter"></note-filter>
