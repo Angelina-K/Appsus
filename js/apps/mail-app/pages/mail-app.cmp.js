@@ -19,10 +19,11 @@ export default {
         <searchFilter @filteredByTxt="setFilter"/>
         <!-- <sortEmails @sorted="setSorting"/> -->
         <actionBtns v-if="isSelectedEmails" @removeSelected="removeSelected" @markReadSelected="markAsRead"/>
-        <mailList @starred="starEmail" @selected="selectEmail" :filterBy='filterBy' :emails="emailsForDisplay"/>
+        <mailList @starred="starEmail" @selected="selectEmails" :filterBy='filterBy' :emails="emailsForDisplay"/>
         </div>
       <compose/>
     </section>
+    
 `,
   data() {
     return {
@@ -37,6 +38,7 @@ export default {
     this.loadEmails();
     eventBus.$on("emailRead", this.markAsRead);
     eventBus.$on("removeEmail", this.remove);
+    eventBus.$on("emailSent", this.loadEmails);
   },
   // watch: {
   //   emails(newVal, oldVal) {
@@ -48,6 +50,7 @@ export default {
     loadEmails() {
       mailService.query().then((emails) => {
         this.emails = emails;
+        console.log("this emails", this.emails);
       });
       mailService.removedQuery().then((emails) => {
         this.removedEmails = emails;
@@ -69,31 +72,40 @@ export default {
     //   }
     //   this.emails = emails;
     // },
-    selectEmail(email) {
-      // if (!this.selectedEmails) this.selectedEmails = [];
-      mailService.getById(email.id).then((email) => {
-        email.isSelected = !email.isSelected;
-        this.isSelectedEmails = email.isSelected ? true : false;
-        mailService.save(email).then(this.loadEmails);
-        // if (email.isSelected) this.selectedEmails.push(email);
-        // console.log(this.selectedEmails);
-      });
+
+    selectEmails(email) {
+      mailService.save(email).then(this.loadEmails);
+      const isSelected = this.emails.some((email) => email.isSelected);
+      this.isSelectedEmails = isSelected;
     },
 
     remove(emailId) {
       mailService.getById(emailId).then((email) => {
-        email.isRemoves = true;
+        email.isRemoved = true;
         mailService.saveToRemoved(email);
       });
       mailService.remove(emailId).then(this.loadEmails);
     },
 
+    // removeSelected() {
+    //   this.emails.forEach((email) => {
+    //     if (email.isSelected && !email.isRemoved) {
+    //       mailService.getById(email.id).then((email) => {
+    //         email.isRemoved = true;
+    //         mailService.saveToRemoved(email);
+    //         mailService.remove(email.id);
+    //         this.loadEmails();
+    //       });
+    //       // this.remove(email.id);
+    //     }
+    //   });
+    // },
     removeSelected() {
-      this.emails.forEach((email) => {
-        if (email.isSelected) {
-          this.remove(email.id);
-        }
+      const selected = this.emails.filter((email) => email.isSelected);
+      selected.forEach((email) => {
+        this.remove(email.id);
       });
+      this.loadEmails();
     },
 
     starEmail(emailId) {
