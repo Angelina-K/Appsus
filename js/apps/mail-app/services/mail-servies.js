@@ -54,23 +54,19 @@ function getById(emailId) {
   return storageService.get(EMAILS_KEY, emailId);
 }
 
-function save(email) {
-  if (email.id) {
-    console.log("saving to storage");
-    return storageService.put(EMAILS_KEY, email);
-  } else {
-    console.log("creating new to storage", email);
-
-    return storageService.post(EMAILS_KEY, email);
-  }
-}
 // function save(email) {
 //   if (email.id) {
-//     console.log('saving to storage');
+//     console.log("saving to storage");
 //     return storageService.put(EMAILS_KEY, email);
+//   } else {
+//     console.log("creating new to storage", email);
+//     return storageService.post(EMAILS_KEY, email);
 //   }
-//   else return storageService.post(EMAILS_KEY, email);
 // }
+function save(email) {
+  if (email.id) return storageService.put(EMAILS_KEY, email);
+  else return storageService.post(EMAILS_KEY, email);
+}
 
 function remove(emailId) {
   return storageService.remove(EMAILS_KEY, emailId);

@@ -47,6 +47,7 @@ export default {
     },
     close() {
       document.body.classList.remove("modal-open");
+      this.resetEmpty();
       this.shouldShow = false;
     },
     onFormClick(val, form) {
@@ -59,11 +60,26 @@ export default {
     },
     onSend() {
       this.emptyEmail.sentAt = new Date().toString();
-      mailService.save(this.emptyEmail).then(this.close);
-      // eventBus.$emit("emailSent");
+      mailService.save(this.emptyEmail).then(() => {
+        eventBus.$emit("emailSent");
+      });
+      this.close();
+      this.resetEmpty();
     },
     setExpand() {
       this.expand = !this.expand;
+    },
+    resetEmpty() {
+      this.emptyEmail = {
+        subject: "",
+        body: "",
+        isRead: false,
+        isStarred: false,
+        isRemoved: false,
+        sentAt: "",
+        from: "me",
+        to: "",
+      };
     },
   },
 };
