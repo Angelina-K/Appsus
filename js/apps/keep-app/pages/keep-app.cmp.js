@@ -5,6 +5,7 @@ import { storageService } from "../../../services/async-storage-service.js";
 import noteAdd from "../cmps/note-add.cmps.js";
 import noteFilter from "../cmps/note-filter.cmps.js";
 import noteList from "../cmps/note-list.cmps.js";
+import { utilService } from "../../../services/util-service.js";
 
 export default {
   name: "note-app",
@@ -14,7 +15,7 @@ export default {
               <h1>Welcome To keep</h1>
               <h3 class="my-notes-handling"> My Notes</h3>
               
-              <note-add></note-add>
+              <note-add @addNote="addNote"></note-add>
               <note-filter @filtered="setFilter"></note-filter>
               
               <section class="notes-containers">
@@ -43,6 +44,7 @@ export default {
     tooglePin(noteId) {
       // console.log(noteId);
       noteService.tooglePin(noteId);
+      console.log(noteId);
     },
     noteChanged(note) {
       console.log("changed", note);
@@ -79,26 +81,37 @@ export default {
     },
     setFilter(filterBy) {
       this.filterBy = filterBy;
+      console.log(this.filterBy);
+    },
+    addNote(note) {
+      noteService.addNote(note);
+      this.loadNotes();
     },
   },
   computed: {
     notesToShow() {
       if (!this.filterBy) return this.notes;
-      console.log(this.notes);
+      if (this.filterBy.type === "all") return this.notes;
 
-      // const searchStr = this.filterBy.info.titleTxt.toLowerCase();
-      const Type = this.filterBy.type
-        ? this.filterBy.type
-        : this.filterBy.type === "All";
+      console.log("this.notes", this.notes);
+      console.log("this.filterBy", this.filterBy);
 
-      const filterNotes = this.nots.filter((note) => {
+      const searchStr = this.filterBy.info.toLowerCase();
+      const type = this.filterBy.type ? this.filterBy.type : "all";
+
+      console.log("searchStr", searchStr);
+      console.log("type", type);
+
+      const notesToShow = this.notes.filter((note) => {
         return (
-          note.title.toLowerCase().includes(searchStr) && note.filterBy.type
+          note.info.titleTxt.toLowerCase().includes(searchStr) &&
+          note.type === type
         );
       });
-      // console.log(filterNotes);
 
-      return this.notes;
+      console.log("notesToShow", notesToShow);
+
+      return notesToShow;
     },
   },
 

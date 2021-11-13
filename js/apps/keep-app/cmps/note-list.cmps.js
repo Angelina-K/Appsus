@@ -2,28 +2,30 @@ import noteImg from "./note-img.cmps.js";
 import noteTxt from "./note-txt.cmps.js";
 import noteVideo from "./note-video.cmps.js";
 import noteTodos from "./note-todos.cmps.js";
-import noteEdit from "./note-edit.cmps.js";
 import noteMap from "../cmps/note-map.cmps.js";
+import noteEdit from "./note-edit.cmps.js";
+import { utilService } from "../../../services/util-service.js";
 
 export default {
   name: "note-list",
   props: ["notes", "filter"],
   template: `
     <section>
-        <h4 >Pinned Notes:</h4>
-            <ul class="notes-section">
+        <h4  >Pinned Notes:</h4>
+            <ul  class="notes-section">
                 <li class="clean-list" v-for="note in notes">
                 <component @click.native="selected(note)" :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
             </ul>
-        <!-- <h4 v-if="pinnedOn">Unpinned Notes:</h4>
-         <ul v-else>
+
+        <h4 >Unpinned Notes:</h4>
+         <ul>
                 <li class="clean-list" v-for="note in unpinnedNotes">
                 <component :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
-            </ul> -->
+            </ul>
         <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
         <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote" ></note-edit>
         </transition>
@@ -39,8 +41,8 @@ export default {
     selected(note) {
       this.$emit("selected", note);
     },
-    tooglePin() {
-      this.$emit("tooglePin", this.note.id);
+    tooglePin(noteId) {
+      this.$emit("tooglePin", noteId);
       // console.log(this.note.id);
     },
     closeEdit() {
@@ -66,7 +68,36 @@ export default {
       // console.log(note);
     },
   },
-  computed: {},
+  computed: {
+    pinnedNotes() {
+      var notes = this.notes;
+      console.log(this.notes);
+      if (this.filterType === "all")
+        return notes.filter((note) => note.isPinned === true);
+      else
+        return notes.filter(
+          (note) => note.isPinned === true && note.type === this.filterType
+        );
+    },
+    unpinnedNotes() {
+      var notes = this.notes;
+      // console.log("yes", notes);
+      if (this.filterType === "all")
+        return console.log("filterType;", filterType);
+      //   return this.notes.filter((note) => {
+      //     note.isPinned === true;
+      //     console.log(filterType);
+      //   });
+      // else
+      //   return notes.filter(
+      //     (note) => note.isPinned === true && note.type === this.filterType
+      //   );
+    },
+    pinnedOn() {
+      if (this.pinnedNotes.length === 0) return false;
+      else return true;
+    },
+  },
   components: {
     noteImg,
     noteTxt,

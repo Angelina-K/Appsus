@@ -10,6 +10,7 @@ export const noteService = {
   tooglePin,
   save,
   getEmptyNote,
+  addNote,
 };
 
 const NOTE_KEY = "note";
@@ -31,9 +32,12 @@ function deleteNote(notesId) {
   return storageService.remove(NOTE_KEY, notesId);
 }
 
-// function _save(entityType, entities) {
-//   localStorage.setItem(entityType, JSON.stringify(entities));
-// }
+function addNote(note) {
+  var newNote = _createNote(note.type, note.info);
+  gNotes.unshift(newNote);
+  utilService.saveToStorage(NOTE_KEY, gNotes);
+  return Promise.resolve("add");
+}
 
 function save(note) {
   // console.log("save_servis", note);

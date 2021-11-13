@@ -5,8 +5,8 @@ export default {
         <button ><i class="fas fa-search fa-lg"></i></button>
 
         <input @input="filter" v-model="filterBy.info" type="text" placeholder="Title">
-        <select v-model="filterBy.type">
-            <option>All</option>
+        <select @change="filter" v-model="filterBy.type">
+            <option value="all">All</option>
             <option value="note-txt">Text Notes</option>
             <option value="note-img">Image Notes</option>
             <option value="note-video">Video Notes</option>
@@ -19,7 +19,7 @@ export default {
     return {
       filterBy: {
         info: "",
-        type: "All",
+        type: "all",
       },
     };
   },
