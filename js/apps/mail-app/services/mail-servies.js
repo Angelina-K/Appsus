@@ -61,14 +61,17 @@ function _createEmails() {
         "to: me"
       ),
       _createEmail(
-        "So Long, And Thanks For All The Fish",
-        `Time is money and money's time
-        We wasted every second dime
-        On diets, lawyers, shrinks and apps, and flags and plastic surgery
-        Now Willy Wonka, Major Tom
-        Ali and Leia have moved on
-        Signal the final curtain call in all its atomic pageantry`,
-        "Dolphin.inc",
+        "So Long & Thanks For All The Fish",
+        `So long and thanks for all the fish
+          So sad that it should come to this
+          We tried to warn you all that your dead
+          You may not share our intellect
+          Which might explain your disrespect
+          For all the natural wonders that
+          Grow around you
+          So long, so long and thanks
+          For all the fish`,
+        "Dolphins.inc",
         "me"
       ),
       _createEmail(

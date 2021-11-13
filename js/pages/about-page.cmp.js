@@ -20,8 +20,7 @@ export default {
                     My name is Pitou.
                  </p>
                 <p class="paragraph2" >
-                    I am an 2 year old mixed breed dog, my mother adopted me at the age
-                    of six months.
+                    I am a 2 year old mixed breed cat, my mother adopted me when i was only a few weeks old.
                 </p>
             </section>
             </div>
