@@ -7,9 +7,6 @@ export default {
             <button @click="markReadSelected">Mark as read</button>
         </section>
     `,
-  data() {
-    return {};
-  },
   methods: {
     removeSelected() {
       this.$emit("removeSelected");
@@ -18,6 +15,4 @@ export default {
       this.$emit("markReadSelected");
     },
   },
-  computed: {},
-  components: {},
 };

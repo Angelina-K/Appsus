@@ -24,8 +24,11 @@ export default {
     <button   @click="activeBtn = 'deleted'" :class="{active: activeBtn === 'deleted' }">
     <i class="material-icons">delete</i>
     Deleted</button>
-    <span >read:</span>
+    <div class="count-read flex col align-center">
+    <span >Read:</span>
     <span>{{read}}</span>
+    </div>
+    
   </section>
 `,
   data() {
@@ -33,21 +36,10 @@ export default {
       activeBtn: this.filterBy,
     };
   },
-  created() {
-    // this.filterBy = filterBy;
-    // this.$emit('filtered', { ...this.filterBy });
-    // this.countUnread();
-  },
+
   watch: {
     activeBtn(newVal, oldVal) {
-      // console.log("this.activeBtn", this.activeBtn);
-      // console.log(this.activeBtn);
       this.$emit("filtered", this.activeBtn);
     },
-  },
-  computed: {
-    // countUnread() {
-    //   console.log(this.emails);
-    // },
   },
 };

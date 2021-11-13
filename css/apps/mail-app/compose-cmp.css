@@ -1,7 +1,7 @@
 .email-compose {
   position: absolute;
-  width: 50%;
-  height: 70%;
+  width: 95%;
+  height: 95%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -30,9 +30,6 @@
   color: rgb(208, 208, 208);
   border: none;
 }
-.close-btn:hover {
-  background-color: rgb(132, 132, 132);
-}
 .recipient-lbl {
   font-size: 14px;
 }
@@ -56,4 +53,21 @@
 }
 .send-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* fullscreen */
+@media (min-width: 1020px) {
+  .email-compose {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  .close-btn:hover {
+    background-color: rgb(132, 132, 132);
+  }
 }
