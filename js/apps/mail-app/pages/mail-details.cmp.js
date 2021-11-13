@@ -19,7 +19,8 @@ export default {
       <span>hh@example.com</span> 
     </div>
     <span class="seperator">to:{{email.to}}</span>
-    <p>{{email.body}}</p> 
+    <p class="email-body">{{email.body}}</p> 
+    <button class="close-btn-lg" @click.nativ="goBack">Go Back</button>
   </section>
   `,
   data() {
