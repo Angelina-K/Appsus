@@ -12,6 +12,9 @@
 .flex.space-between {
   justify-content: space-between;
 }
+.flex.justify-center {
+  justify-content: center;
+}
 .flex.col {
   flex-direction: column;
 }

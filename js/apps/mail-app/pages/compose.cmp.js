@@ -1,6 +1,6 @@
 import { eventBus } from "../../../services/event-bus-service.js";
 import { mailService } from "../services/mail-servies.js";
-
+import { noteService } from "../../keep-app/services/note-service.cmps.js";
 export default {
   template: `
     <section v-if="shouldShow" class="email-compose flex col">
@@ -11,10 +11,10 @@ export default {
       <form @submit.prevent="onSend" class="flex col space-between">
         <div class="flex row recipient-container">
           <span class="recipient-lbl" v-if="isRecipientClicked">To</span>
-          <input v:model="to" v-on:click="onFormClick(true,'to')"  :placeholder="to" class=" recipient-form seperator">
+          <input @click="saveToDrafts" v:model="to" v-on:click="onFormClick(true,'to')"  :placeholder="to" class=" recipient-form seperator">
         </div>
-        <input v-model="emptyEmail.subject"  v-on:click="onFormClick(false)" placeholder="Subject" class="subject-form seperator">
-        <textarea v-model="emptyEmail.body" v-on:click="onFormClick(false)" class= "compose-body seperator"></textarea>
+        <input @click="saveToDrafts" v-model="emptyEmail.subject"  v-on:click="onFormClick(false)" placeholder="Subject" class="subject-form seperator">
+        <textarea @click="saveToDrafts" v-model="emptyEmail.body" v-on:click="onFormClick(false)" class= "compose-body seperator"></textarea>
             <button type="submit" class="send-button">Send</button>
         </form>
     </section>
@@ -27,6 +27,7 @@ export default {
         isRead: false,
         isStarred: false,
         isRemoved: false,
+        isDraft: false,
         sentAt: "",
         from: "me",
         to: "",
@@ -34,6 +35,7 @@ export default {
       shouldShow: false,
       isRecipientClicked: false,
       expand: true,
+      interval: null,
     };
   },
   created() {
@@ -49,6 +51,7 @@ export default {
       document.body.classList.remove("modal-open");
       this.resetEmpty();
       this.shouldShow = false;
+      clearInterval(this.interval);
     },
     onFormClick(val, form) {
       this.isRecipientClicked = val;
@@ -65,6 +68,21 @@ export default {
       });
       this.close();
       this.resetEmpty();
+    },
+    saveToDrafts() {
+      clearInterval(this.interval);
+      this.interval = setInterval(() => {
+        this.emptyEmail.isDraft = true;
+        mailService.save(this.emptyEmail).then(() => {
+          eventBus.$emit("emailSent");
+          console.log("saving draft");
+          const msg = {
+            txt: "Saved to Drafts",
+            type: "success",
+          };
+          eventBus.$emit("showMsg", msg);
+        });
+      }, 5000);
     },
     setExpand() {
       this.expand = !this.expand;

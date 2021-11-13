@@ -53,7 +53,7 @@ img {
   border: 1px solid rgba(159, 158, 158, 15%);
   border-radius: 30px;
   overflow: scroll;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 /* USER MSG */

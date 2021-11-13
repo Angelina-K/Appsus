@@ -6,22 +6,58 @@ h2,
 p {
   margin: 0;
 }
-.side-filters {
-  width: 150px;
+.mail-app {
+  display: grid;
+  grid-template-columns: 200px 2fr;
+  grid-template-rows: 50px 1fr;
+  /* align-items: center; */
+  grid-template-areas:
+    "compose search"
+    "side list";
 }
-.search-list {
-  margin-left: 15px;
-  margin-right: 15px;
-  /* padding: 10px; */
+/* .compose-btn-con {
+  justify-content: center;
+} */
+.compose-btn {
+  grid-area: compose;
+  /* align-self: center; */
+  width: 120px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid black;
+  /* margin: auto; */
+  /* align-self: center; */
+  /* align-self: stretch; */
+}
+.search-bar {
+  grid-area: search;
+  padding: 15px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+}
+.side-filters {
+  /* width: 200px; */
+  grid-area: side;
+  /* align-self: stretch; */
+  /* justify-content: stretch; */
+  /* align-self: center; */
 }
 .mail-list {
-  /* height: 100vh; */
-  height: inherit;
-  /* height: 70vh; */
-
-  /* padding: 10px; */
-  border: 1px solid grey;
+  grid-area: list;
+  padding-left: 15px;
+  margin: none;
 }
+
+.search-list {
+  /* margin-left: 15px;
+  margin-right: 15px; */
+  /* padding: 10px; */
+}
+/* .mail-list {
+  height: inherit;
+  border: 1px solid grey;
+} */
 button {
   cursor: pointer;
 }
@@ -46,7 +82,7 @@ button {
   margin: 0;
 }
 .title-for-display {
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .prev-btns {

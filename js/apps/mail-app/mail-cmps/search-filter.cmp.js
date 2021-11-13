@@ -1,7 +1,7 @@
 export default {
   name: "search",
   template: `
-      <section >
+      <section>
           <label for="search">
               <input @change.lazy="filtered" v-model="filterByTxt" class="search-bar" type="text" placeholder="Search mail">
           </label>
