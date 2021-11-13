@@ -10,19 +10,19 @@ import actionBtns from "../mail-cmps/action-btns.cmp.js";
 export default {
   name: "mail-app",
   template: `
-    <section class="mail-app flex col ">
+    <!-- <section class="mail-app flex col ">
       <div class="flex ">
         <button @click="openCompose" class="compose-btn">Compose</button>
         <searchFilter @filteredByTxt="setFilter"/>
       </div>
       <div class="search-list flex ">
-        <!-- <sortEmails @sorted="setSorting"/> -->
+
         <actionBtns v-if="isSelectedEmails" @removeSelected="removeSelected" @markReadSelected="markAsRead"/>
         <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
         <mailList @starred="starEmail" @selected="selectEmails" :filterBy='filterBy' :emails="emailsForDisplay"/>
         </div>
       <compose/>
-    </section>
+    </section> -->
 
     <!-- <section class="mail-app flex ">
       <div class="flex col">
@@ -36,6 +36,23 @@ export default {
         </div>
       <compose/>
     </section> -->
+
+    <section class="mail-app  ">
+      <!-- <div class=""> -->
+        <!-- <div class="flex justify-center"> -->
+        <button @click="openCompose" class="compose-btn">Compose</button>
+        <!-- </div> -->
+        <searchFilter  @filteredByTxt="setFilter"/>
+        <!-- <div class="flex justify-center"> -->
+        <sideFilters  @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
+        <!-- </div> -->
+        <!-- </div> -->
+      <!-- <div class="search-list"> -->
+        <actionBtns v-if="isSelectedEmails" @removeSelected="removeSelected" @markReadSelected="markAsRead"/>
+        <mailList  @starred="starEmail" @selected="selectEmails" :filterBy='filterBy' :emails="emailsForDisplay"/>
+        <!-- </div> -->
+      <compose/>
+    </section>
     
 `,
   data() {

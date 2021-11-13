@@ -2,7 +2,7 @@ export default {
   name: "side-filters",
   props: ["emails", "filterBy", "read"],
   template: `
-  <section class="side-filters flex col">
+  <section class="side-filters flex col ">
     <button  @click="activeBtn = 'inbox'" :class="{active: activeBtn === 'inbox' }">
       Inbox</button>
     <button  @click="activeBtn = 'starred'" :class="{active: activeBtn === 'starred' }"

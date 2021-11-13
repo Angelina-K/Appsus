@@ -17,3 +17,16 @@
 .search-bar {
   height: 30px;
 }
+
+.side-filters button {
+  padding: 10px;
+  border: none;
+  text-align: left;
+  border-top-right-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
+  /* margin-bottom: 10px; */
+  /* justify-self: ; */
+  /* justify-self: stretch; */
+  /* width: 200px; */
+  /* width: 100%; */
+}
