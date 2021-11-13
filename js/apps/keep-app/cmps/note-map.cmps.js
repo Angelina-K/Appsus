@@ -3,9 +3,7 @@ export default {
   props: ["note"],
   template: `
            <section class="note-display" :style="{color: txtColor, backgroundColor: bcgColor}">
-               <div class="note-header">
-               {{note.info.titleTxt}}
-              </div>
+              
                <div class="note-options">
                 <button title="Pin note" @click="tooglePin" :class="{'pinned': note.isPinned}"><i class="fas fa-thumbtack fa-lg edit-btn"></i></button>
                 <button title="Edit note" @click="editNoteInfo"><i class="fas fa-edit fa-lg edit-btn"></i></i></button>
@@ -15,6 +13,9 @@ export default {
                   <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
                 <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
             </div>
+            <div class="note-header">
+               {{note.info.titleTxt}}
+              </div>
             <iframe width="100%" height="150px" ref="map" :src="src"></iframe>
           </section>`,
 

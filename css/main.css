@@ -1,6 +1,8 @@
 @import url(./parts/fonts.css);
 @import url(./parts/helpers.css);
 @import url(./home-page.css);
+@import url(./about-page.css);
+@import url(./mobile-nav.css);
 
 /* MAIL CSS */
 @import url(./apps/mail-app/mail-app-main.css);
@@ -100,4 +102,11 @@ img {
 body.modal-open .curtain-screen {
   pointer-events: auto;
   opacity: 1;
+}
+
+/* MOBILE */
+@media (min-width: 860px) {
+  .btn-menu {
+    display: none;
+  }
 }

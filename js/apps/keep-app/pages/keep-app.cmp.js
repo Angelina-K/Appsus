@@ -96,7 +96,7 @@ export default {
       console.log("this.filterBy", this.filterBy);
 
       const searchStr = this.filterBy.info.toLowerCase();
-      const type = this.filterBy.type ? this.filterBy.type : "all";
+      const type = this.filterBy.type;
 
       console.log("searchStr", searchStr);
       console.log("type", type);

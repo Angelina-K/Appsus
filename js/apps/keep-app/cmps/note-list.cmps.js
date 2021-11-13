@@ -80,14 +80,13 @@ export default {
         );
     },
     unpinnedNotes() {
-      var notes = this.notes;
+      // var notes = this.notes;
       // console.log("yes", notes);
-      if (this.filterType === "all")
-        return console.log("filterType;", filterType);
-      //   return this.notes.filter((note) => {
-      //     note.isPinned === true;
-      //     console.log(filterType);
-      //   });
+      // if (this.filterBy.type === "all")
+      //   return console.log("filterType;", filterType);
+      // return this.notes.filter((note) => {
+      //   note.isPinned === true;
+      // });
       // else
       //   return notes.filter(
       //     (note) => note.isPinned === true && note.type === this.filterType
