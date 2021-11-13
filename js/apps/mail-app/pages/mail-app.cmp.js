@@ -145,9 +145,7 @@ export default {
               case "sent":
                 return email.from === "me";
               case "drafts":
-                // FIXME add drafts
-                console.log("drafts");
-                break;
+                return email.isDraft;
               case "read":
                 return email.isRead;
               case "unread":
