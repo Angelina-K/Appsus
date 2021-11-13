@@ -9,7 +9,6 @@ export const mailService = {
   save,
   saveToRemoved,
   getEmpyEmail,
-  // addReview
 };
 
 const EMAILS_KEY = "emails";
@@ -25,23 +24,6 @@ const loggedinUser = {
   fullname: "Mahatma Appsus",
 };
 
-// const email = {
-//   id: "e101",
-//   subject: "Miss you!",
-//   body: "Would love to catch up sometimes",
-//   isRead: false,
-//   sentAt: 1551133930594,
-//   // to: "momo@momo.com",
-// };
-
-const criteria = {
-  status: "inbox/sent/trash/draft",
-  txt: "puki", // no need to support complex text search
-  isRead: true, // (optional property, if missing: show all)
-  isStared: true, // (optional property, if missing: show all)
-  lables: ["important", "romantic"], // has any of the labels
-};
-
 function query() {
   return storageService.query(EMAILS_KEY);
 }
@@ -54,15 +36,6 @@ function getById(emailId) {
   return storageService.get(EMAILS_KEY, emailId);
 }
 
-// function save(email) {
-//   if (email.id) {
-//     console.log("saving to storage");
-//     return storageService.put(EMAILS_KEY, email);
-//   } else {
-//     console.log("creating new to storage", email);
-//     return storageService.post(EMAILS_KEY, email);
-//   }
-// }
 function save(email) {
   if (email.id) return storageService.put(EMAILS_KEY, email);
   else return storageService.post(EMAILS_KEY, email);
@@ -81,21 +54,76 @@ function _createEmails() {
   let emails = utilService.loadFromStorage(EMAILS_KEY);
   if (!emails || !emails.length) {
     emails = [
-      _createEmail("work", "do some work", "me", "to: adi"),
       _createEmail(
-        "somethinggggggggggggggggggg",
-        "do something kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+        "Package dispached!",
+        "Dear shopper, we're happay to inform you that your delivery is on its way!",
         "Aliexpress",
+        "to: me"
+      ),
+      _createEmail(
+        "So Long, And Thanks For All The Fish",
+        `Time is money and money's time
+        We wasted every second dime
+        On diets, lawyers, shrinks and apps, and flags and plastic surgery
+        Now Willy Wonka, Major Tom
+        Ali and Leia have moved on
+        Signal the final curtain call in all its atomic pageantry`,
+        "Dolphin.inc",
         "me"
       ),
-      _createEmail("subjecttttttttttttttt", "nice body", "eBay", "me"),
-      _createEmail("no subject", "whatever", "next.uk", "me"),
+      _createEmail(
+        "Wikipedia aout Lorem",
+        "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking, which allows designers to consider the form of a webpage or publication, without the meaning of the text influencing the design.",
+        "Anonymous Stalker",
+        "me"
+      ),
+      _createEmail(
+        "URL query params in Vue",
+        `I am trying to set query params with Vue-router when changing input fields, I don't want to navigate to some other page but just want to modify url query params on the same page, I am doing like this:
+
+      this.$router.replace({ query: { q1: "q1" } })
+
+      But this also refreshes the page and sets the y position to 0, ie scrolls 
+      to the top of the page. Is this the correct way to set the URL query params 
+      or is there a better way to do it.`,
+        "me",
+        "support@Vue.com"
+      ),
+
+      _createEmail(
+        "Refund Rejected",
+        `Dear shopper, unofortunately your
+       request for a refund regarding package #$Tfdsf8jwfj "Vue for Dummies" has been rejected`,
+        "next.uk",
+        "me"
+      ),
+
+      _createEmail(
+        "Testing",
+        `This an email designed to test sending an email to myself`,
+        "me",
+        "me"
+      ),
+
+      _createEmail(
+        "Refund Request",
+        `Hi,
+        I've recently purchased the book "Vue for Dummies" which has yet to arrive.
+        I would like to cancel the order, 
+        seeing as I am no dummy this book is unsuitable for my needs.
+        Please cancel the order and gimmi a refund.
+        
+        Yours truly, 
+        me`,
+        "me",
+        "next.uk"
+      ),
     ];
   }
   gEmails = emails;
-  // console.log("gEmails", gEmails);
   utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
+
 function getEmpyEmail() {
   return {
     subject: "",
@@ -109,6 +137,7 @@ function getEmpyEmail() {
     to: "",
   };
 }
+
 function _createEmail(subject, body, from, to) {
   const email = {
     id: utilService.makeId(),
@@ -121,9 +150,6 @@ function _createEmail(subject, body, from, to) {
     sentAt: new Date().toString(),
     from,
     to,
-    // fromName: from,
-    // ${from}@momo.com
   };
-  // new Date().toLocaleString(),
   return email;
 }

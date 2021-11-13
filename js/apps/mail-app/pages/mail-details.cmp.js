@@ -9,17 +9,18 @@ export default {
     <button class="close-details-btn" @click.nativ="goBack">X</button>
     <div class="flex align-center space-between">
       <div class="flex align-center">
-    <i class="material-icons">account_circle</i>
+      <i class="material-icons">account_circle</i>
       <titleDisplay :title="email.subject"/>
       </div>
       <span>{{formateTime}}</span>
-    </div>
-    <div class="email-from flex ">
+       </div>
+      <div class="email-from flex ">
       <strong>{{email.from}} </strong>
       <span>hh@example.com</span> 
-    </div>
-    <span class="seperator">to:{{email.to}}</span>
-    <p>{{email.body}}</p> 
+      </div>
+      <span class="seperator">to:{{email.to}}</span>
+      <p class="email-body">{{email.body}}</p> 
+      <button class="close-btn-lg" @click.nativ="goBack">Go Back</button>
   </section>
   `,
   data() {
@@ -34,6 +35,7 @@ export default {
       this.markAsRead();
     });
   },
+
   watch: {
     "$route.params.mailId": {
       handler() {
@@ -46,30 +48,25 @@ export default {
       immediate: true,
     },
   },
-  destroyed() {
-    // console.log("destroys");
-    // this.email = null;
-  },
   methods: {
     goBack() {
       this.$router.push("/mail");
     },
+
     markAsRead() {
       if (this.email && !this.email.isRead) {
         this.email.isRead = true;
         eventBus.$emit("emailRead", this.email.id);
       }
-      // if (this.email && !this.email.isRead) {
-      //   console.log(this.email);
-      //   mailService.save(this.email);
-      // }
     },
   },
+
   computed: {
     formateTime() {
       return this.email.sentAt.substring(0, 21);
     },
   },
+
   components: {
     titleDisplay,
   },

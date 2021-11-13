@@ -1,5 +1,6 @@
 import mailPreview from "./mail-preview.cmp.js";
 import titleDisplay from "./titleForDisplay.cmp.js";
+
 export default {
   name: "mail-list",
   props: ["emails", "filterBy"],
@@ -22,39 +23,20 @@ export default {
       checkedEmails: [],
     };
   },
-  // },
-  // watch: {
-  //   emails: {
-  //     handler(newVal, oldVal) {
-  //       console.log("emails has changed!");
-  //     },
-  //     deep: true,
-  //   },
-  // },
-  // activeBtn(newVal, oldVal) {
-  //   // console.log("this.activeBtn", this.activeBtn);
-  //   this.$emit("filtered", this.activeBtn);
-  // },
+
   methods: {
     emailClicked(emailId) {
       this.$router.push("/mail/" + emailId);
     },
+
     selected(email) {
-      // email.isSelected = !email.isSelected;
-      // this.checkedEmails
       this.$emit("selected", email);
-      // this.$emit("selected", this.checkedEmails);
     },
+
     starred(emailId) {
-      // console.log("starred", email.isStarred);
       this.$emit("starred", emailId);
     },
-    // mouseOver() {
-    //   console.log("mouseOver");
-    //   this.showBtns = true;
-    // },
   },
-  computed: {},
   components: {
     mailPreview,
     titleDisplay,

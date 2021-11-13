@@ -5,7 +5,6 @@ export default {
           <select v-model="sortBy" @change="sort" name="sort">
               <option value="">Sort by</option>
               <option value="subject">Subject</option>
-              <!-- <option value="">Date</option> -->
           </select>
       </section>
   `,
@@ -14,11 +13,10 @@ export default {
       sortBy: null,
     };
   },
+
   methods: {
     sort() {
       this.$emit("sorted", this.sortBy);
     },
   },
-  computed: {},
-  components: {},
 };

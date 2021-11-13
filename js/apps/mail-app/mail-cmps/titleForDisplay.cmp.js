@@ -3,7 +3,7 @@ export default {
   props: ["title"],
   template: `
     <section class="title-for-display">
-        <h2>{{titleForDisplay}}</h2>
+      <h2>{{titleForDisplay}}</h2>
     </section>
 `,
   computed: {
@@ -17,5 +17,4 @@ export default {
       return newtitle;
     },
   },
-  components: {},
 };

@@ -10,47 +10,14 @@ import actionBtns from "../mail-cmps/action-btns.cmp.js";
 export default {
   name: "mail-app",
   template: `
-    <!-- <section class="mail-app flex col ">
-      <div class="flex ">
-        <button @click="openCompose" class="compose-btn">Compose</button>
-        <searchFilter @filteredByTxt="setFilter"/>
-      </div>
-      <div class="search-list flex ">
-
-        <actionBtns v-if="isSelectedEmails" @removeSelected="removeSelected" @markReadSelected="markAsRead"/>
-        <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
-        <mailList @starred="starEmail" @selected="selectEmails" :filterBy='filterBy' :emails="emailsForDisplay"/>
-        </div>
-      <compose/>
-    </section> -->
-
-    <!-- <section class="mail-app flex ">
-      <div class="flex col">
-        <button @click="openCompose" class="compose-btn">Compose</button>
-        <sideFilters @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
-      </div>
-      <div class="search-list flex col">
-        <searchFilter @filteredByTxt="setFilter"/>
-        <actionBtns v-if="isSelectedEmails" @removeSelected="removeSelected" @markReadSelected="markAsRead"/>
-        <mailList @starred="starEmail" @selected="selectEmails" :filterBy='filterBy' :emails="emailsForDisplay"/>
-        </div>
-      <compose/>
-    </section> -->
-
     <section class="mail-app  ">
-      <!-- <div class=""> -->
-        <!-- <div class="flex justify-center"> -->
+      <div class="filters-screen" @click="toggleFilters"></div>
+      <button class="filters-menu" @click="toggleFilters"><i class="material-icons">more_vert</i></button>
         <button @click="openCompose" class="compose-btn flex "><span>+</span><span>Compose</span></button>
-        <!-- </div> -->
         <searchFilter  @filteredByTxt="setFilter"/>
-        <!-- <div class="flex justify-center"> -->
         <sideFilters  @filtered="setFilter" :filterBy='filterBy' :emails="emailsForDisplay" :read="coutRead"/>
-        <!-- </div> -->
-        <!-- </div> -->
-      <!-- <div class="search-list"> -->
         <actionBtns v-if="isSelectedEmails" @removeSelected="removeSelected" @markReadSelected="markAsRead"/>
         <mailList  @starred="starEmail" @selected="selectEmails" :filterBy='filterBy' :emails="emailsForDisplay"/>
-        <!-- </div> -->
       <compose/>
     </section>
     
@@ -70,12 +37,6 @@ export default {
     eventBus.$on("removeEmail", this.remove);
     eventBus.$on("emailSent", this.loadEmails);
   },
-  // watch: {
-  //   emails(newVal, oldVal) {
-  //     console.log("txt has changed!");
-  //     // this.loadEmails();
-  //   },
-  // },
   methods: {
     loadEmails() {
       mailService.query().then((emails) => {
@@ -85,22 +46,10 @@ export default {
         this.removedEmails = emails;
       });
     },
+
     setFilter(filterBy) {
       this.filterBy = filterBy;
     },
-    setSorting(sortBy) {
-      this.sortBy = sortBy;
-      console.log(this.sortBy);
-    },
-    // sortEmailsBy(emails) {
-    //   if (!this.sortBy) this.emails = emails;
-    //   if (this.sortBy === "subject") {
-    //     emails.sort(function (a, b) {
-    //       return a.subject.toLowerCase() < b.subject.toLowerCase() ? 1 : -1;
-    //     });
-    //   }
-    //   this.emails = emails;
-    // },
 
     selectEmails(email) {
       mailService.save(email).then(this.loadEmails);
@@ -114,21 +63,13 @@ export default {
         mailService.saveToRemoved(email);
       });
       mailService.remove(emailId).then(this.loadEmails);
+      const msg = {
+        txt: "Email Deleted",
+        type: "success",
+      };
+      eventBus.$emit("showMsg", msg);
     },
 
-    // removeSelected() {
-    //   this.emails.forEach((email) => {
-    //     if (email.isSelected && !email.isRemoved) {
-    //       mailService.getById(email.id).then((email) => {
-    //         email.isRemoved = true;
-    //         mailService.saveToRemoved(email);
-    //         mailService.remove(email.id);
-    //         this.loadEmails();
-    //       });
-    //       // this.remove(email.id);
-    //     }
-    //   });
-    // },
     removeSelected() {
       const selected = this.emails.filter((email) => email.isSelected);
       selected.forEach((email) => {
@@ -142,24 +83,40 @@ export default {
         mailService.getById(emailId).then((email) => {
           email.isStarred = !email.isStarred;
           mailService.save(email).then(this.loadEmails);
+          const msg = {
+            txt: "Email Starred",
+            type: "success",
+          };
+          eventBus.$emit("showMsg", msg);
         });
       }
       this.loadEmails();
     },
+
     markAsRead(emailId) {
       if (this.emails) {
         mailService.getById(emailId).then((email) => {
           email.isRead = !email.isRead;
           mailService.save(email).then(this.loadEmails);
+          const msg = {
+            txt: "Marked as read",
+            type: "success",
+          };
+          eventBus.$emit("showMsg", msg);
         });
       }
     },
+
     openCompose() {
       eventBus.$emit("showCompose");
     },
+
+    toggleFilters() {
+      document.body.classList.toggle("filters-open");
+    },
   },
+
   computed: {
-    // FIXME after deleting search bar showes all emails but inbox btn is active
     emailsForDisplay() {
       if (this.emails && this.filterBy) {
         let emailsToShow;
@@ -186,14 +143,11 @@ export default {
                   email.subject.toLowerCase().includes(this.filterBy) ||
                   email.body.toLowerCase().includes(this.filterBy)
                 );
-              // return email;
             }
           });
         }
-        // sortEmailsBy(emailsToShow);
         return emailsToShow;
       }
-      // return sortEmailsBy(this.emails);
       return this.emails;
     },
 
@@ -203,8 +157,9 @@ export default {
         const read = allEmails.filter((email) => {
           return email.isRead;
         });
-        // console.log(allEmails);
-        return `${read.length} / ${allEmails.length}`;
+        const res = ((read.length / allEmails.length) * 100).toFixed(0);
+
+        return res + "%";
       }
     },
   },
@@ -213,7 +168,6 @@ export default {
     sideFilters,
     compose,
     searchFilter,
-    // sortEmails,
     actionBtns,
   },
 };

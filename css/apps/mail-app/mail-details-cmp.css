@@ -20,3 +20,15 @@
 .mail-Details span {
   margin: 0px 10px 0px 10px;
 }
+.email-body {
+  flex-grow: 1;
+}
+.close-btn-lg {
+  align-content: flex-end;
+  width: 100px;
+  height: 30px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  background-color: #cad1a3;
+  border: none;
+}

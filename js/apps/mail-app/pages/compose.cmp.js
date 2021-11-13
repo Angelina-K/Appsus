@@ -1,6 +1,6 @@
 import { eventBus } from "../../../services/event-bus-service.js";
 import { mailService } from "../services/mail-servies.js";
-import { noteService } from "../../keep-app/services/note-service.cmps.js";
+
 export default {
   template: `
     <section v-if="shouldShow" class="email-compose flex col">
@@ -42,17 +42,20 @@ export default {
     eventBus.$on("showCompose", this.show);
     this.to = "Recipients";
   },
+
   methods: {
     show() {
       this.shouldShow = true;
       document.body.classList.add("modal-open");
     },
+
     close() {
       document.body.classList.remove("modal-open");
       this.resetEmpty();
       this.shouldShow = false;
       clearInterval(this.interval);
     },
+
     onFormClick(val, form) {
       this.isRecipientClicked = val;
       if (form == "to") {
@@ -61,6 +64,7 @@ export default {
         this.to = this.to ? this.to : "Recipients";
       }
     },
+
     onSend() {
       this.emptyEmail.sentAt = new Date().toString();
       mailService.save(this.emptyEmail).then(() => {
@@ -69,13 +73,13 @@ export default {
       this.close();
       this.resetEmpty();
     },
+
     saveToDrafts() {
       clearInterval(this.interval);
       this.interval = setInterval(() => {
         this.emptyEmail.isDraft = true;
         mailService.save(this.emptyEmail).then(() => {
           eventBus.$emit("emailSent");
-          console.log("saving draft");
           const msg = {
             txt: "Saved to Drafts",
             type: "success",
@@ -84,9 +88,11 @@ export default {
         });
       }, 5000);
     },
+
     setExpand() {
       this.expand = !this.expand;
     },
+
     resetEmpty() {
       this.emptyEmail = {
         subject: "",
