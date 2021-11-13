@@ -50,7 +50,6 @@ export default {
     loadEmails() {
       mailService.query().then((emails) => {
         this.emails = emails;
-        console.log("this emails", this.emails);
       });
       mailService.removedQuery().then((emails) => {
         this.removedEmails = emails;
