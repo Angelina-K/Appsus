@@ -13,7 +13,7 @@ export default {
                 <router-link class="page-move" to="/book">Books</router-link> <span class="for-desktop">|</span>
                 <router-link class="page-move" to="/about">About</router-link> 
             </nav>
-            <button class="btn-menu" onclick="toggleMenu()"><i class="fas fa-align-justify"></i></button>
+            <button class="btn-menu" onclick="toggleMenu()">☰</button>
         </header>
     `,
 };

@@ -12,13 +12,13 @@
     top: 0px;
 
     right: 0px;
-    height: 100vh;
+    /* height: 60vh; */
     flex-direction: column;
     background-color: #c9d5a5;
     width: 200px;
     transform: translateX(100%);
     border-inline-start: 1px solid rgba(245, 245, 245, 0.705);
-    transition: transform 1s, box-shadow 3s;
+    transition: transform 1s, box-shadow 6s;
   }
 
   body.menu-open .nav {
