@@ -40,7 +40,7 @@ export default {
     <section class="mail-app  ">
       <!-- <div class=""> -->
         <!-- <div class="flex justify-center"> -->
-        <button @click="openCompose" class="compose-btn">Compose</button>
+        <button @click="openCompose" class="compose-btn flex "><span>+</span><span>Compose</span></button>
         <!-- </div> -->
         <searchFilter  @filteredByTxt="setFilter"/>
         <!-- <div class="flex justify-center"> -->

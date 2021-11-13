@@ -1,10 +1,11 @@
 export default {
   name: "search",
   template: `
-      <section>
-          <label for="search">
+      <section class="search-con flex align-center">
+      <i class="material-icons">search</i>
+         
               <input @change.lazy="filtered" v-model="filterByTxt" class="search-bar" type="text" placeholder="Search mail">
-          </label>
+         
       </section>
   `,
   data() {

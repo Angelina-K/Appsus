@@ -6,12 +6,12 @@ export default {
   template: `
   <section class="mail-list">
     <titleDisplay :title="filterBy"/>
-    <ul class="clean-list">
+    <ul class="clean-list ">
       <li v-for="(email,idx) in emails" :class="{read: email.isRead }" class="flex align-center" :key="email.id">
           <label for="email">
               <input :value=email v-model="checkedEmails" @change="selected(email)" type="checkbox">
            </label>
-          <button v-if="!email.isRemoved" :class="{starred: email.isStarred}" @click.stop="starred(email.id)">star</button>
+          <i class="star-btn fas fa-star"  v-if="!email.isRemoved" :class="{starred: email.isStarred}" @click.stop="starred(email.id)"></i>
             <mailPreview :email="email" :filterBy="filterBy" @click.native="emailClicked(email.id)"/>
         </li>
     </ul>
@@ -40,7 +40,7 @@ export default {
       this.$router.push("/mail/" + emailId);
     },
     selected(email) {
-      email.isSelected = !email.isSelected;
+      // email.isSelected = !email.isSelected;
       // this.checkedEmails
       this.$emit("selected", email);
       // this.$emit("selected", this.checkedEmails);
