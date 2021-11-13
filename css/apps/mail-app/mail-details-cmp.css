@@ -1,0 +1,22 @@
+.mail-Details {
+  padding: 0px 30px 0px 30px;
+  gap: 20px;
+}
+.mail-Details i {
+  margin-right: 10px;
+  color: rgba(0, 0, 0, 0.315);
+}
+.close-details-btn {
+  align-self: flex-end;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #abb7ba00;
+}
+.close-details-btn:hover {
+  background-color: #abb7ba41;
+}
+.mail-Details span {
+  margin: 0px 10px 0px 10px;
+}

@@ -6,15 +6,19 @@ export default {
   name: "mail-Details",
   template: `
   <section v-if="this.email" class="mail-Details flex col">
-    <button @click.nativ="goBack">Back</button>
+    <button class="close-details-btn" @click.nativ="goBack">X</button>
     <div class="flex align-center space-between">
+      <div class="flex align-center">
+    <i class="material-icons">account_circle</i>
       <titleDisplay :title="email.subject"/>
+      </div>
       <span>{{formateTime}}</span>
     </div>
-    <div class="flex">
-      <strong>{{email.from}}</strong><span>hh@example.com</span><br>
-      <span>{{email.to }}></span>
+    <div class="email-from flex ">
+      <strong>{{email.from}} </strong>
+      <span>hh@example.com</span> 
     </div>
+    <span class="seperator">to:{{email.to}}</span>
     <p>{{email.body}}</p> 
   </section>
   `,
