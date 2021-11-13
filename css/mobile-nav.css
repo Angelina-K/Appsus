@@ -18,7 +18,7 @@
     width: 200px;
     transform: translateX(100%);
     border-inline-start: 1px solid rgba(245, 245, 245, 0.705);
-    transition: transform 3s, box-shadow 3s;
+    transition: transform 1s, box-shadow 3s;
   }
 
   body.menu-open .nav {
@@ -44,6 +44,18 @@
   .btn-menu {
     display: block;
     margin-right: 50px;
+  }
+  .about-us {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .about-section {
+    width: 300px;
+    margin-bottom: 10px;
   }
 }
 

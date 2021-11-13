@@ -79,7 +79,7 @@ function _createNotes() {
       _createNote(
         "note-txt",
         { titleTxt: "My first note", bodyTxt: "I want to sleep 😴😴😴" },
-        "#444247"
+        "#90918d"
       ),
       _createNote(
         "note-map",
@@ -89,8 +89,8 @@ function _createNotes() {
       _createNote(
         "note-img",
         {
-          titleTxt: "My favorite movie",
-          url: "https://excursionsbarcelona.com/wp-content/uploads/2021/01/Harry-Potter-in-Barcelona.jpg",
+          titleTxt: "Should see soon",
+          url: "https://jpimg.com.br/uploads/2021/01/design-sem-nome-2021-01-25t144942.609.jpg",
         },
         "#e77254"
       ),
@@ -136,7 +136,7 @@ function _createNotes() {
           titleTxt: "Music for a better mood",
           url: "https://www.youtube.com/embed/NiOxSuEJaTI",
         },
-        "#444247"
+        "#90918d"
       ),
       _createNote(
         "note-todos",
