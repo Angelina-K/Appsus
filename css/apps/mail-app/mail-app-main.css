@@ -10,8 +10,8 @@ p {
   width: 150px;
 }
 .search-list {
-  margin-left: 15px;
-  margin-right: 15px;
+  /* margin-left: 15px;
+  margin-right: 15px; */
   /* padding: 10px; */
 }
 .mail-list {
