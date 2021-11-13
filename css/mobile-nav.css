@@ -18,7 +18,7 @@
     width: 200px;
     transform: translateX(100%);
     border-inline-start: 1px solid rgba(245, 245, 245, 0.705);
-    transition: transform 6s, box-shadow 6s;
+    transition: transform 3s, box-shadow 3s;
   }
 
   body.menu-open .nav {
