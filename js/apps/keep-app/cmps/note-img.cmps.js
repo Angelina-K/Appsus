@@ -40,7 +40,7 @@ export default {
       this.$refs.fillColor.click();
     },
     changeBcgColor() {
-      this.$emit("change-bcg-color", this.bcgColor, this.note.id);
+      this.$emit("changeBcgColor", this.bcgColor, this.note.id);
     },
     changeTxtColor() {
       this.$emit("change-txt-color", this.txtColor, this.note.id);
