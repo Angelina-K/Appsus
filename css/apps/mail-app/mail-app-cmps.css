@@ -1,32 +1,34 @@
+.active-filter,
 .read {
   background-color: rgba(128, 128, 128, 0.247);
 }
-
-.active-filter {
-  background-color: rgba(128, 128, 128, 0.247);
-}
 .active {
-  background-color: rgba(128, 128, 128, 0.247);
+  background-color: #c5d2a263;
 }
 .starred {
-  background-color: khaki;
+  color: #ca9e5b;
 }
-.compose-btn {
-  width: 100px;
+.star-btn {
+  margin-left: 8px;
 }
-.search-bar {
-  height: 30px;
-}
-
 .side-filters button {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   padding: 10px;
   border: none;
   text-align: left;
   border-top-right-radius: 1.5em;
   border-bottom-right-radius: 1.5em;
-  /* margin-bottom: 10px; */
-  /* justify-self: ; */
-  /* justify-self: stretch; */
-  /* width: 200px; */
-  /* width: 100%; */
+  font-size: 18px;
+}
+button i {
+  opacity: 0.5;
+}
+.prev-btns {
+  justify-self: end;
+}
+.prev-btns button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
 }

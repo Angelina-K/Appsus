@@ -8,8 +8,8 @@ export default {
       <strong>{{shordSubject}}</strong>
       <p>{{shortBody}}</p>
       <div v-if="showBtns && filterBy!=='deleted'" class="prev-btns">
-        <button @click.stop="read">Read</button>
-        <button @click.stop="remove">Del</button>
+        <button @click.stop="read"><i class="material-icons">mark_email_read</i></button>
+        <button @click.stop="remove"><i class="material-icons">delete</i></button>
       </div>
       <p v-else>{{shortDate}}</p>
   </section>

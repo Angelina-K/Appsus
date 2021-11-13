@@ -7,16 +7,14 @@
   transform: translate(-50%, -50%);
   background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  /* padding: 5px; */
 }
 .email-compose form {
   padding: 5px;
   height: inherit;
   flex-grow: 1;
 }
-
 .top-bar {
-  background-color: rgb(64, 64, 64);
+  background-color: #ea7553;
 }
 .title-btn {
   background-color: transparent;
@@ -32,15 +30,10 @@
   color: rgb(208, 208, 208);
   border: none;
 }
-
 .close-btn:hover {
   background-color: rgb(132, 132, 132);
 }
-/* .recipient-container {
-  margin: 5px 0px 5px 0px;
-} */
 .recipient-lbl {
-  /* margin-left: 1px; */
   font-size: 14px;
 }
 .recipient-form {
@@ -52,19 +45,14 @@
 .compose-body {
   overflow-y: auto;
   flex-grow: 1;
-  /* flex-basis: 290px; */
-  /* flex-grow: 3; */
-  /* margin: 5px 5px; */
 }
-
 .send-button {
-  /* margin: 5px 0px 0px 10px; */
   margin: 5px;
   width: 50px;
   border: none;
   border-radius: 5px;
-  background-color: rgb(71, 71, 152);
-  color: white;
+  background-color: #c6d3a3;
+  color: #fff;
 }
 .send-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
