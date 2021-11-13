@@ -6,7 +6,7 @@ export default {
 
         <input @input="filter" v-model="filterBy.info" type="text" placeholder="Title">
         <select @change="filter" v-model="filterBy.type">
-            <option value="all">All</option>
+            <option value="">All</option>
             <option value="note-txt">Text Notes</option>
             <option value="note-img">Image Notes</option>
             <option value="note-video">Video Notes</option>
@@ -19,7 +19,7 @@ export default {
     return {
       filterBy: {
         info: "",
-        type: "all",
+        type: "",
       },
     };
   },

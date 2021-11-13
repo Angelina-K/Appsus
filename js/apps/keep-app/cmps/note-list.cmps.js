@@ -4,28 +4,29 @@ import noteVideo from "./note-video.cmps.js";
 import noteTodos from "./note-todos.cmps.js";
 import noteMap from "../cmps/note-map.cmps.js";
 import noteEdit from "./note-edit.cmps.js";
+import filterBy from "./note-filter.cmps.js";
 import { utilService } from "../../../services/util-service.js";
 
 export default {
   name: "note-list",
-  props: ["notes", "filter"],
+  props: ["notes", "filterBy.info", "filterBy.type"],
   template: `
     <section>
-        <h4  >Pinned Notes:</h4>
-            <ul  class="notes-section">
+        <!-- <h4  >Pinned Notes:</h4> -->
+            <ul class="notes-section">
                 <li class="clean-list" v-for="note in notes">
                 <component @click.native="selected(note)" :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
             </ul>
 
-        <h4 >Unpinned Notes:</h4>
-         <ul>
+        <!-- <h4>Unpinned Notes:</h4>
+         <ul >
                 <li class="clean-list" v-for="note in unpinnedNotes">
                 <component :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
                 </component>
                 </li>
-            </ul>
+            </ul> -->
         <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
         <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote" ></note-edit>
         </transition>
@@ -69,33 +70,9 @@ export default {
     },
   },
   computed: {
-    pinnedNotes() {
-      var notes = this.notes;
-      console.log(this.notes);
-      if (this.filterType === "all")
-        return notes.filter((note) => note.isPinned === true);
-      else
-        return notes.filter(
-          (note) => note.isPinned === true && note.type === this.filterType
-        );
-    },
-    unpinnedNotes() {
-      // var notes = this.notes;
-      // console.log("yes", notes);
-      // if (this.filterBy.type === "all")
-      //   return console.log("filterType;", filterType);
-      // return this.notes.filter((note) => {
-      //   note.isPinned === true;
-      // });
-      // else
-      //   return notes.filter(
-      //     (note) => note.isPinned === true && note.type === this.filterType
-      //   );
-    },
-    pinnedOn() {
-      if (this.pinnedNotes.length === 0) return false;
-      else return true;
-    },
+    pinnedNotes() {},
+    pinnedNotes() {},
+    unpinnedNotes() {},
   },
   components: {
     noteImg,
@@ -104,5 +81,6 @@ export default {
     noteTodos,
     noteEdit,
     noteMap,
+    filterBy,
   },
 };

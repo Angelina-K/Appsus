@@ -11,6 +11,8 @@ export default {
               <button title="Change color" @click="openBcgColor">
                 <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
               <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
+              <!-- <button title="Email" @click="emailNote"><i class="far fa-paper-plane fa-lg edit-btn"></i></button> -->
+
           </div>
           <div class="note-header">
              {{note.info.titleTxt}}
@@ -48,5 +50,9 @@ export default {
     deleteNote() {
       this.$emit("deleteNote", this.note.id);
     },
+    // emailNote() {
+    //   this.$emit("emailNote", this.note);
+    //   console.log(this.note);
+    // },
   },
 };

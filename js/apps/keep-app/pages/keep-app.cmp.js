@@ -90,26 +90,19 @@ export default {
   computed: {
     notesToShow() {
       if (!this.filterBy) return this.notes;
-      if (this.filterBy.type === "all") return this.notes;
-
-      console.log("this.notes", this.notes);
-      console.log("this.filterBy", this.filterBy);
-
       const searchStr = this.filterBy.info.toLowerCase();
-      const type = this.filterBy.type;
-
-      console.log("searchStr", searchStr);
-      console.log("type", type);
-
-      const notesToShow = this.notes.filter((note) => {
-        return (
-          note.info.titleTxt.toLowerCase().includes(searchStr) &&
-          note.type === type
-        );
+      let notesToShow;
+      console.log(this.filterBy);
+      notesToShow = this.notes.filter((note) => {
+        if (this.filterBy.type) {
+          return (
+            note.type === this.filterBy.type &&
+            note.info.titleTxt.toLowerCase().includes(searchStr)
+          );
+        } else {
+          return note.info.titleTxt.toLowerCase().includes(searchStr);
+        }
       });
-
-      console.log("notesToShow", notesToShow);
-
       return notesToShow;
     },
   },
