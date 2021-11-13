@@ -18,7 +18,7 @@ export default {
               <note-filter @filtered="setFilter"></note-filter>
               
               <section class="notes-containers">
-              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor"/></note-list>
+              <note-list :notes="notesToShow" @deleteNote="deleteNotes" @tooglePin="tooglePin" @changeBcgColor="changeBcgColor" @changeTxtColor="changeTxtColor" @noteDuplicate="noteDuplicate"/></note-list>
                  </section>
             </div>
           </section>
@@ -57,6 +57,10 @@ export default {
     },
     changeBcgColor(bcgColor, noteId) {
       noteService.changeBcgColor(bcgColor, noteId);
+    },
+    noteDuplicate(note, bcgColor) {
+      noteService.addNote(note, bcgColor);
+      this.loadNotes();
     },
     deleteNotes(noteId) {
       noteService

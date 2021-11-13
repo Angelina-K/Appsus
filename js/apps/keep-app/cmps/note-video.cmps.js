@@ -11,6 +11,8 @@ export default {
               <button title="Change color" @click="openBcgColor">
                 <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
               <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
+              <button title="Duplicate note" @click="noteDuplicate"><i class="fas fa-copy fa-lg edit-btn"></i></i></button>
+
           </div>
           <div class="note-header">
              {{note.info.titleTxt}}
@@ -47,6 +49,9 @@ export default {
     },
     deleteNote() {
       this.$emit("deleteNote", this.note.id);
+    },
+    noteDuplicate() {
+      this.$emit("noteDuplicate", this.note);
     },
   },
   computed: {

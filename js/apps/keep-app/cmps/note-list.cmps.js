@@ -15,7 +15,7 @@ export default {
         <!-- <h4  >Pinned Notes:</h4> -->
             <ul class="notes-section">
                 <li class="clean-list" v-for="note in notes">
-                <component @click.native="selected(note)" :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @tooglePin="tooglePin">
+                <component @click.native="selected(note)" :is="note.type" :note="note" @editNoteInfo="editNoteInfo" @deleteNote="deleteNote" @openBcgColor="changeBcgColor" @openTxtColor="changeTxtColor" @noteDuplicate="noteDuplicate"  @tooglePin="tooglePin">
                 </component>
                 </li>
             </ul>
@@ -28,7 +28,7 @@ export default {
                 </li>
             </ul> -->
         <transition name="fade" class="fade-enter-active fade-leave-active fade-enter fade-leave-to">
-        <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote" ></note-edit>
+        <note-edit v-if="editNote" :note="selectedNote" @editNoteInfo="editNoteInfo" @close-edit="closeEdit" @delete-edit="deleteNote"></note-edit>
         </transition>
         <div class="edit-modal" v-if="editNote"></div>
     </section>
@@ -67,6 +67,9 @@ export default {
     editNoteInfo(note) {
       (this.selectedNote = note), (this.editNote = true);
       // console.log(note);
+    },
+    noteDuplicate(note, bcgColor) {
+      this.$emit("noteDuplicate", note, bcgColor);
     },
   },
   computed: {

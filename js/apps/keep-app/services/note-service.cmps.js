@@ -33,7 +33,7 @@ function deleteNote(notesId) {
 }
 
 function addNote(note) {
-  var newNote = _createNote(note.type, note.info);
+  var newNote = _createNote(note.type, note.info, note.style.bcgColor);
   gNotes.unshift(newNote);
   utilService.saveToStorage(NOTE_KEY, gNotes);
   return Promise.resolve("add");
@@ -158,7 +158,7 @@ function _createNotes() {
   return notes;
 }
 
-function _createNote(type, info, bcgColor = "rgb(68, 66, 71)") {
+function _createNote(type, info, bcgColor = "rgb(144, 145, 141)") {
   return {
     id: utilService.makeId(),
     type,
