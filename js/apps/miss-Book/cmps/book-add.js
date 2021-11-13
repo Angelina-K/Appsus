@@ -20,7 +20,7 @@ export default {
     };
   },
   created() {
-    console.log(this.searchBooks);
+    // console.log(this.searchBooks);
   },
   methods: {
     search() {

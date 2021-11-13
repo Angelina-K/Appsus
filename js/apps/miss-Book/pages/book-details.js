@@ -61,7 +61,7 @@ export default {
       this.$router.push("/book");
     },
     addReview(review) {
-      console.log(review);
+      // console.log(review);
       let book = { ...this.book };
       this.reviews.push(review);
       book.reviews = this.reviews;

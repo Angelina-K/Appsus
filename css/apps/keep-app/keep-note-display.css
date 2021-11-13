@@ -19,7 +19,7 @@
 
 .note-display {
   font-size: 17px;
-  height: 250px;
+  /* min-height: 250px; */
   width: 250px;
   border-radius: 5px;
   border: 1px solid rgb(146, 146, 146);
@@ -55,4 +55,14 @@
   display: flex;
   flex-direction: column;
   align-items: baseline;
+}
+
+@media (max-width: 860px) {
+  .note-display {
+    font-size: 15px;
+    width: 150px;
+  }
+  .fa-lg {
+    font-size: 100%;
+  }
 }

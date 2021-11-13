@@ -36,7 +36,7 @@ export default {
   methods: {
     loadNotes() {
       noteService.query().then((notes) => {
-        console.log("app notes", notes);
+        // console.log("app notes", notes);
         this.notes = notes;
       });
     },
@@ -59,7 +59,7 @@ export default {
       noteService.changeBcgColor(bcgColor, noteId);
     },
     noteDuplicate(note, bcgColor) {
-      noteService.addNote(note, bcgColor);
+      noteService.noteDuplicate(note, bcgColor);
       this.loadNotes();
     },
     deleteNotes(noteId) {
@@ -84,7 +84,7 @@ export default {
     },
     setFilter(filterBy) {
       this.filterBy = filterBy;
-      console.log(this.filterBy);
+      // console.log(this.filterBy);
     },
     addNote(note) {
       noteService.addNote(note);
@@ -96,7 +96,7 @@ export default {
       if (!this.filterBy) return this.notes;
       const searchStr = this.filterBy.info.toLowerCase();
       let notesToShow;
-      console.log(this.filterBy);
+      // console.log(this.filterBy);
       notesToShow = this.notes.filter((note) => {
         if (this.filterBy.type) {
           return (

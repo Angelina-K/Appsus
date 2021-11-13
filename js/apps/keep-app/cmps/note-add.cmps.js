@@ -37,7 +37,7 @@ export default {
     setType(type) {
       event.stopPropagation();
       this.noteType = type;
-      console.log(this.noteType);
+      // console.log(this.noteType);
     },
     openInput(event) {
       event.stopPropagation();
@@ -60,7 +60,7 @@ export default {
           return todo;
         });
 
-        console.log(todos);
+        // console.log(todos);
         this.note.info.todos = todos;
       } else if (this.note.type === "note-map") {
         this.note.info.location = this.noteBody;

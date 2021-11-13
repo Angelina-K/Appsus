@@ -57,7 +57,7 @@ export default {
     },
     deleteNote() {
       this.$emit("deleteNote", this.note.id);
-      console.log(this.note.id);
+      // console.log(this.note.id);
     },
     noteDuplicate() {
       this.$emit("noteDuplicate", this.note);

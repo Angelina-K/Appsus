@@ -43,7 +43,7 @@ export default {
           this.loadBooks();
         })
         .catch((err) => {
-          console.log("err", err);
+          // console.log("err", err);
           const msg = {
             txt: "Error. Please try later",
             type: "error",
@@ -58,11 +58,11 @@ export default {
       this.searchStr = searchBooks;
       bookService.getGoogleBooksApi(this.searchStr).then((books) => {
         this.searchBooks = books;
-        console.log(books);
+        // console.log(books);
       });
     },
     addBook(book) {
-      console.log(book);
+      // console.log(book);
       // this.searchBooks = bookId
       bookService.addGoogleBook(book).then(() => {
         this.loadBooks();

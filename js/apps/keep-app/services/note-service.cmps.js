@@ -11,6 +11,7 @@ export const noteService = {
   save,
   getEmptyNote,
   addNote,
+  noteDuplicate,
 };
 
 const NOTE_KEY = "note";
@@ -33,6 +34,12 @@ function deleteNote(notesId) {
 }
 
 function addNote(note) {
+  var newNote = _createNote(note.type, note.info);
+  gNotes.unshift(newNote);
+  utilService.saveToStorage(NOTE_KEY, gNotes);
+  return Promise.resolve("add");
+}
+function noteDuplicate(note) {
   var newNote = _createNote(note.type, note.info, note.style.bcgColor);
   gNotes.unshift(newNote);
   utilService.saveToStorage(NOTE_KEY, gNotes);
@@ -61,10 +68,10 @@ function changeTxtColor(txtColor, noteId) {
 
 function tooglePin(noteId) {
   getById(noteId).then((note) => {
-    console.log(noteId);
+    // console.log(noteId);
     note.isPinned = !note.isPinned;
     utilService.saveToStorage(NOTE_KEY, gNotes);
-    console.log(gNotes);
+    // console.log(gNotes);
   });
 }
 
