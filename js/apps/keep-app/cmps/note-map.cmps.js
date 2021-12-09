@@ -9,6 +9,7 @@ export default {
                 <button title="Edit note" @click="editNoteInfo"><i class="fas fa-edit fa-lg edit-btn"></i></i></button>
                 <button title="Change text color" @click="openTxtColor">
                   <input ref="txtColor" type="color" hidden v-model="txtColor" @change="changeTxtColor"><i class="fas fa-paint-brush fa-lg edit-btn"></i></button>
+                  
                 <button title="Change color" @click="openBcgColor">
                   <input ref="fillColor" type="color" hidden v-model="bcgColor" @change="changeBcgColor"><i class="fas fa-palette fa-lg edit-btn"></i></button>
                 <button title="Delete note" @click="deleteNote"><i class="fas fa-trash-alt fa-lg edit-btn"></i></button>
